@@ -1,8 +1,5 @@
 <?php
 session_start();
-session_start();
-$UID=$_SESSION['UID'];
-echo $UID;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +8,7 @@ echo $UID;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Info</title>
+    <title>Personal Credit Info</title>
 </head>
 
 <body>
@@ -32,31 +29,29 @@ echo $UID;
         }
 
         $UID=$_SESSION['UID'];
-        $querycreditcardinfo = "SELECT * FROM `user` WHERE `user_UID` = $UID";
+        $querycreditcardinfo = "SELECT C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
         $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
 
-        echo "<form action='modifypersonalinfoDB.php' method='POST'>";
+        echo "<tr>" . "<td>" . "銀行" . "</td>";
+        echo "<td>" . "卡種" . "</td>" . "</tr>";
+        if ($resultcheck > 0) {
             while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                echo "<tr>" . "<td>" . "使用者名稱" . "</td>";
-                $Uname=$row['user_name'];
-                echo "<td>" . "<input type='text' name='Uname' value='$Uname'>" . "</td>" . "</tr>";
-                echo "<tr>" . "<td>" . "使用者信箱" . "</td>";
-                echo "<td>" . $row['user_email'] . "</td>" . "</tr>";
-                echo "<tr>" . "<td>" . "使用者密碼" . "</td>";
-                $Upassword=$row['user_password'];
-                echo "<td>" . "<input type='text' name='Upassword' value='$Upassword'>" . "</td>" . "</tr>";
+                echo "<tr>" ."<td>" . $row['creditcard_bank'] . "</td>" ;
+                echo "<td>" . $row['creditcard_category'] . "</td>" . "</tr>";
             }
-        echo "<table>"."<tr>"."<td>"."<input type='submit' name='submit' value='完成'>"."</td>"."</table>";
-        echo "</form>";
+        }
+
 
         mysqli_free_result($querycreditcardinfo_result);
         $conn->close();
-        echo "</table>";
+        echo "<table>"."<tr>"."<td>"."<a href='deletepersonalcreditcard.php'>刪除</a>"."</td>";
+        echo "<td>"."<a href='addpersonalcreditcard.php'>新增</a>"."</td>"."</tr>"."</table>";
         echo "</center>";
     } else {
     }
     ?>
+    
 
 
 </body>

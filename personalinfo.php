@@ -36,19 +36,17 @@ echo $UID;
         $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
 
-        echo "<form action='modifypersonalinfoDB.php' method='POST'>";
+        if ($resultcheck > 0) {
             while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
                 echo "<tr>" . "<td>" . "使用者名稱" . "</td>";
-                $Uname=$row['user_name'];
-                echo "<td>" . "<input type='text' name='Uname' value='$Uname'>" . "</td>" . "</tr>";
+                echo "<td>" . $row['user_name'] . "</td>" . "</tr>";
                 echo "<tr>" . "<td>" . "使用者信箱" . "</td>";
                 echo "<td>" . $row['user_email'] . "</td>" . "</tr>";
                 echo "<tr>" . "<td>" . "使用者密碼" . "</td>";
-                $Upassword=$row['user_password'];
-                echo "<td>" . "<input type='text' name='Upassword' value='$Upassword'>" . "</td>" . "</tr>";
+                echo "<td>" . $row['user_password'] . "</td>" . "</tr>";
             }
-        echo "<table>"."<tr>"."<td>"."<input type='submit' name='submit' value='完成'>"."</td>"."</table>";
-        echo "</form>";
+        }
+        echo "<table>"."<tr>"."<td>"."<a href='modifypersonalinfo.php'>修改</a>"."</td>"."</table>";
 
         mysqli_free_result($querycreditcardinfo_result);
         $conn->close();
