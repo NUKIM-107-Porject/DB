@@ -1,5 +1,6 @@
 <?php
 session_start();
+$UID=$_SESSION['UID'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,19 +17,7 @@ session_start();
     echo "<center>";
     echo "<table border='3'>";
     if (isset($_SESSION['UID'])) {
-        $servername = "localhost";
-        $username = "root";
-        $password = "lin1073329";
-        $dbname = "project";
-
-        //Create connection 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        //Check connection -->
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $UID=$_SESSION['UID'];
+        include("DBconnection.php");
         $querycreditcardinfo = "SELECT C.creditcard_CID,C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
         $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
@@ -43,13 +32,13 @@ session_start();
             }
         }
 
-
         mysqli_free_result($querycreditcardinfo_result);
         $conn->close();
         // echo "<table>"."<tr>"."<td>"."<a href='deletepersonalcreditcard.php'>刪除</a>"."</td>";
         // echo "<td>"."<a href='addpersonalcreditcard.php'>新增</a>"."</td>"."</tr>"."</table>";
         echo "</center>";
     } else {
+        header("Refresh:0;url=initial.php");
     }
     ?>
     

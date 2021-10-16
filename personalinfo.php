@@ -1,6 +1,5 @@
 <?php
 session_start();
-session_start();
 $UID=$_SESSION['UID'];
 echo $UID;
 ?>
@@ -19,19 +18,7 @@ echo $UID;
     echo "<center>";
     echo "<table border='3'>";
     if (isset($_SESSION['UID'])) {
-        $servername = "localhost";
-        $username = "root";
-        $password = "lin1073329";
-        $dbname = "project";
-
-        //Create connection 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        //Check connection -->
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $UID=$_SESSION['UID'];
+        include("DBconnection.php");
         $querycreditcardinfo = "SELECT * FROM `user` WHERE `user_UID` = $UID";
         $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
@@ -53,6 +40,7 @@ echo $UID;
         echo "</table>";
         echo "</center>";
     } else {
+        header("Refresh:0;url=initial.php");
     }
     ?>
 

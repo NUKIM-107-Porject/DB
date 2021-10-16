@@ -1,20 +1,10 @@
 <?php
     session_start();
-    $CID=@$_POST['creditcard'];
-    //echo $CID; 
-    $servername = "localhost";
-    $username = "root";
-    $password = "lin1073329";
-    $dbname = "project";
-
-    //Create connection 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    //Check connection -->
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
+    if (isset($_SESSION['UID'])) {
     $UID = $_SESSION['UID'];
+    $CID=@$_POST['creditcard'];
+    
+    include("DBconnection.php");
     $addpersonalcreditcard = "INSERT INTO `user_creditcard_relation` (`PK`, `UID`, `CID`) VALUES (NULL, '$UID', '$CID');";
     $addpersonalcreditcard_result = mysqli_query($conn, $addpersonalcreditcard);
     
@@ -24,5 +14,8 @@
     else{
         echo "fell";
     }
-
+}
+else {
+    header("Refresh:0;url=initial.php");
+}
 ?>

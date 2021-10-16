@@ -24,17 +24,17 @@ if($row['user_password']!=null){
         //echo $row['user_UID'];
         //echo "<script>alert('login successfully')<script>";
         $_SESSION['UID']=$row['user_UID'];
-        header("Refresh:0;url=map.php");    
+        header("Refresh:0;url=initial.php");    
     }
     else{
         //echo "login fail!(Wrong Password)";
-        header("Refresh:0;url=initial.html");
+        header("Refresh:0;url=loginregist.php");
     }
 }    
 else{
     //header("url=signin.html");
     //echo "login fail!(Wrong Email)";
-    header("Refresh:0;url=initial.html");
+    header("Refresh:0;url=loginregist.php");
     //sleep(3); header("signin.html");
 }
 
