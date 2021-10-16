@@ -28,17 +28,27 @@ session_start();
     }
 
     $UID = $_SESSION['UID'];
-    $querycreditcardinfo = "SELECT C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
+    $querycreditcardinfo = "SELECT c.creditcard_CID,c.creditcard_bank,c.creditcard_category
+    FROM credit_card c
+    WHERE c.creditcard_CID NOT IN (SELECT U.CID FROM user_creditcard_relation U WHERE U.UID='$UID');";
     $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
     $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
-
-    echo "<form action='modifypersonalinfoDB.php' method='POST'>";
+    echo "<h1 style='text-align:center'>Add A Credit Card";
+    if ($resultcheck > 0) {
+        echo "<form action='addpersonalcreditcardDB.php' method='POST'>";
         echo "<select name='creditcard'>";
-        echo "<option value='Taipei'>台北</option>";
-        echo "<option value='Tainan'>台南</option>";
+        //echo "<option selected disable>-- select --</option>";
+        while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
+            $CID = $row['creditcard_CID'];
+            $creditcardbank = $row['creditcard_bank'];
+            $creditcardcategory = $row['creditcard_category'];
+            echo "<option value='$CID'>$creditcardbank $creditcardcategory</option>";
+        }
         echo "</select>";
-    echo "</form>";
-
+        echo "<input type='submit' value='Submit'>";
+        echo "</form>";
+        echo "</h1>";
+    } 
 
     mysqli_free_result($querycreditcardinfo_result);
     $conn->close();
