@@ -21,7 +21,7 @@
 <body>
     <center>
         <h2>Login Here</h2>
-        <form action="signinVerify.php " method="POST">
+        <form action="loginVerify.php " method="POST">
             <table>
                 <tr>
                     <td>Email:</td>
