@@ -17,7 +17,7 @@ $UID = $_SESSION['UID'];
     if (isset($_SESSION['UID'])) {
         echo "<center>";
 
-        include("DBconnection.php");
+        include("./DBconnection.php");
         $querycreditcardinfo = "SELECT c.creditcard_CID,c.creditcard_bank,c.creditcard_category
     FROM credit_card c
     WHERE c.creditcard_CID NOT IN (SELECT U.CID FROM user_creditcard_relation U WHERE U.UID='$UID');";

@@ -4,7 +4,7 @@
     $UID = $_SESSION['UID'];
     $CID=@$_POST['creditcard'];
     
-    include("DBconnection.php");
+    include("./DBconnection.php");
     $addpersonalcreditcard = "INSERT INTO `user_creditcard_relation` (`PK`, `UID`, `CID`) VALUES (NULL, '$UID', '$CID');";
     $addpersonalcreditcard_result = mysqli_query($conn, $addpersonalcreditcard);
     

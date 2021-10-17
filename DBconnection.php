@@ -14,6 +14,6 @@ if ($conn->connect_error) {
 }
 }
 else{
-  header("Refresh:0;url=initial.php");
+  header("Refresh:0;url=./initial.php");
 }
 ?>

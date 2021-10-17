@@ -1,0 +1,195 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  font-family: Microsoft JhengHei;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+html, body {
+  background: #2d385a;
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  background: #2d385a;
+}
+
+header a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+header a .logo {
+  display: block;
+  width: 60px;
+}
+
+header a h1 {
+  margin: auto 10px;
+  color: #ffffff;
+}
+
+header .burger {
+  padding: 5px 10px;
+}
+
+header .burger i {
+  color: #ffffff;
+}
+
+header .burgerlist {
+  display: none;
+}
+
+header .burgerlist.active {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 999;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+header .burgerlist li {
+  background: #ffffff;
+  border-bottom: 5px solid #5d6c9b;
+  border-right: 5px solid #5d6c9b;
+  border-left: 5px solid #5d6c9b;
+}
+
+header .burgerlist li a {
+  font-size: 30px;
+  padding: 10px 50px;
+  color: #2d385a;
+  font-weight: bold;
+}
+
+header .burgerlist li :hover {
+  background: #5d6c9b;
+}
+
+header .burgerlist li .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+header .burgerlist li .user img {
+  width: 50px;
+}
+
+* {
+  outline: #02ee3d 1px solid;
+}
+
+.userForm {
+  text-align: center;
+  width: 500px;
+  font-size: 60px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.userForm h2 {
+  margin-top: 30px;
+}
+
+.userForm ul li {
+  margin-top: 10px;
+}
+
+#map {
+  width: 100%;
+  height: 91%;
+}
+/*# sourceMappingURL=style.css.map */

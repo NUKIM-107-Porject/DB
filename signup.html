@@ -4,53 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <style type="text/css">
-        input[type="submit"]{
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+        
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./img/LOGO.ico" type="image/x-icon"/>
+    <title>MaPaY-SignUp</title>
 </head>
 <body>
-    <center>
-        <h2>Sign Up Here</h2>
+    <div class="userForm">
+        <h2>註冊</h2>
         <form action="signupVerify.php " method="POST">
-            <table>
-                <tr>
-                    <td>Name:</td>
-                    <td>
-                        <input type="text" id="Uname" name="Uname">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td>
-                        <input type="text" id="Uemail" name="Uemail">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td>
-                        <input type="password" id="Upassword" name="Upassword">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="submit" value="Register">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Already A Member?
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="loginregist.php">Login</a>
-                    </td>
-                </tr>
-            </table>
-    </center>
+        <ul>
+            <li><input type="text" id="Uname" name="Uname"></li>
+            <li><input type="text" id="Uemail" name="Uemail"></li>
+            <li><input type="password" id="Upassword" name="Upassword"></li>
+        </ul>
 
+        <input type="submit" name="submit" value="Register">
+    </div> 
+        Already A Member?<a href="loginregist.html">Login</a>
+    <!-- <table>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input type="text" id="Uname" name="Uname">
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="text" id="Uemail" name="Uemail">
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <input type="password" id="Upassword" name="Upassword">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="submit" value="Register">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Already A Member?
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="loginregist.html">Login</a>
+                </td>
+            </tr>
+        </table> -->
 </body>
 </html>

@@ -17,7 +17,7 @@ $UID=$_SESSION['UID'];
     echo "<center>";
     echo "<table border='3'>";
     if (isset($_SESSION['UID'])) {
-        include("DBconnection.php");
+        include("./DBconnection.php");
         $querycreditcardinfo = "SELECT C.creditcard_CID,C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
         $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
@@ -38,7 +38,7 @@ $UID=$_SESSION['UID'];
         // echo "<td>"."<a href='addpersonalcreditcard.php'>新增</a>"."</td>"."</tr>"."</table>";
         echo "</center>";
     } else {
-        header("Refresh:0;url=initial.php");
+        header("Refresh:0;url=./initial.php");
     }
     ?>
     
