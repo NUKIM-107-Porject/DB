@@ -12,18 +12,22 @@
     <title>MaPaY-SignUp</title>
 </head>
 <body>
-    <div class="userForm">
-        <h2>註冊</h2>
-        <form action="signupVerify.php " method="POST">
-        <ul>
-            <li><input type="text" id="Uname" name="Uname"></li>
-            <li><input type="text" id="Uemail" name="Uemail"></li>
-            <li><input type="password" id="Upassword" name="Upassword"></li>
-        </ul>
-
-        <input type="submit" name="submit" value="Register">
+    <div class="formContainer">
+        <div class="userForm">
+            <a href="./visiter.html">
+                <img class="logo" src="./img/LOGO.png" alt="MaPaY-Logo">
+            </a>
+            <form action="signupVerify.php " method="POST">
+            <ul>
+                <li><h2>註冊</h2></li>
+                <li><input type="text" id="Uname" name="Uname" placeholder="UserName"></li>
+                <li><input type="text" id="Uemail" name="Uemail" placeholder="Email"></li>
+                <li><input type="password" id="Upassword" name="Upassword" placeholder="Password"></li>
+                <li><input type="submit" name="submit" value="Register"></li>
+                <li>Already have an account?<a href="loginregist.html">Login</a></li>
+            </ul>
+        </div>
     </div> 
-        Already A Member?<a href="loginregist.html">Login</a>
     <!-- <table>
             <tr>
                 <td>Name:</td>

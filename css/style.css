@@ -172,20 +172,30 @@ header .burgerlist li .user img {
   outline: #02ee3d 1px solid;
 }
 
-.userForm {
+.formContainer {
+  padding: 60px 30% 0 30%;
+}
+
+.formContainer .userForm {
   text-align: center;
   width: 500px;
-  font-size: 60px;
   color: #fff;
   font-weight: bold;
 }
 
-.userForm h2 {
-  margin-top: 30px;
+.formContainer .userForm h2 {
+  font-size: 60px;
 }
 
-.userForm ul li {
-  margin-top: 10px;
+.formContainer .userForm .logo {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.formContainer .userForm ul li {
+  margin-top: 30px;
+  text-align: center;
 }
 
 #map {
