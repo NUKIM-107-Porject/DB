@@ -28,7 +28,7 @@ echo $UID . "<br>";
         echo "<center>";
         echo "<h1>";
         echo "visiter";
-        echo "<br><a href='./loginregist.php'>登入/註冊</a>";
+        echo "<br><a href='./login.html'>登入/註冊</a>";
         echo "</h1>";
         echo "</center>";
     }

@@ -28,13 +28,13 @@ if($row['user_password']!=null){
     }
     else{
         //echo "login fail!(Wrong Password)";
-        header("Refresh:0;url=./loginRegist.php");
+        header("Refresh:0;url=./login.html");
     }
 }    
 else{
     //header("url=signin.html");
     //echo "login fail!(Wrong Email)";
-    header("Refresh:0;url=./loginRegist.php");
+    header("Refresh:0;url=./login.html");
     //sleep(3); header("signin.html");
 }
 

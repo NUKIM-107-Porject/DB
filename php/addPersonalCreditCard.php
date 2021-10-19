@@ -25,7 +25,7 @@ $UID = $_SESSION['UID'];
         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
         echo "<h1 style='text-align:center'>Add A Credit Card";
         if ($resultcheck > 0) {
-            echo "<form action='addpersonalcreditcardDB.php' method='POST'>";
+            echo "<form action='./addpersonalcreditcardDB.php' method='POST'>";
             echo "<select name='creditcard'>";
             //echo "<option selected disable>-- select --</option>";
             while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
@@ -44,7 +44,7 @@ $UID = $_SESSION['UID'];
         $conn->close();
         echo "</center>";
     } else {
-        header("Refresh:0;url=initial.php");
+        header("Refresh:0;url=./initial.php");
     }
     ?>
 
