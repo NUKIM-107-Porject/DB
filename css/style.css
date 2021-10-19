@@ -173,29 +173,62 @@ header .burgerlist li .user img {
 }
 
 .formContainer {
-  padding: 60px 30% 0 30%;
+  padding: 30px 35% 0 35%;
 }
 
 .formContainer .userForm {
   text-align: center;
-  width: 500px;
   color: #fff;
   font-weight: bold;
-}
-
-.formContainer .userForm h2 {
-  font-size: 60px;
+  padding: 25px;
 }
 
 .formContainer .userForm .logo {
-  display: block;
-  width: 150px;
   margin: 0 auto;
+  width: 150px;
 }
 
 .formContainer .userForm ul li {
-  margin-top: 30px;
-  text-align: center;
+  margin-top: 25px;
+}
+
+.formContainer .userForm ul li h2 {
+  font-size: 50px;
+}
+
+.formContainer .userForm ul li input {
+  font-weight: bold;
+  padding: 15px 25px;
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.formContainer .userForm ul li input:focus {
+  outline: none;
+  background: rgba(247, 247, 247, 0.884);
+}
+
+.formContainer .userForm ul li .submit {
+  background: #ffc400;
+  color: #2d385a;
+  cursor: pointer;
+}
+
+.formContainer .userForm ul li .submit:hover {
+  background: #df3314;
+  color: #fff;
+}
+
+.formContainer .userForm ul li a {
+  display: block;
+  color: #fff;
+  font-size: 20px;
+}
+
+.formContainer .userForm ul li a:hover {
+  text-decoration: underline;
 }
 
 #map {
