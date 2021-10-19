@@ -3,18 +3,18 @@ session_start();
 $Uemail = @$_POST['Uemail'];
 $Upassword = @$_POST['Upassword'];
 
-$servername = "localhost";
-$username = "root";
-$password = "lin1073329";
-$dbname = "project";
+// $servername = "localhost";
+// $username = "root";
+// $password = "lin1073329";
+// $dbname = "project";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
+// // Create connection
+// $conn = new mysqli($servername, $username, $password,$dbname);
+// // Check connection
+// if ($conn->connect_error) {
+//   die("Connection failed: " . $conn->connect_error);
+// }
+include("./DBconnection.php");
 $querypassword = "SELECT * FROM `user` WHERE `user_email` = '$Uemail';";
 $querypassword_result = mysqli_query($conn, $querypassword);
 $row=mysqli_fetch_assoc($querypassword_result);

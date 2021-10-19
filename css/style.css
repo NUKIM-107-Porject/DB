@@ -168,10 +168,6 @@ header .burgerlist li .user img {
   width: 50px;
 }
 
-* {
-  outline: #02ee3d 1px solid;
-}
-
 .formContainer {
   padding: 30px 35% 0 35%;
 }
