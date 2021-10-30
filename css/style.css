@@ -169,19 +169,43 @@ header .burgerlist li .user img {
 }
 
 .formContainer {
-  padding: 30px 35% 0 35%;
+  padding: 0 30%;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 0 10%;
+  }
+}
+
+@media (max-width: 568px) {
+  .formContainer {
+    padding: 0;
+  }
 }
 
 .formContainer .userForm {
   text-align: center;
   color: #fff;
   font-weight: bold;
-  padding: 25px;
+  padding: 80px 25px;
 }
 
 .formContainer .userForm .logo {
   margin: 0 auto;
   width: 150px;
+}
+
+@media (max-width: 768px) {
+  .formContainer .userForm {
+    padding: 150px 25px;
+  }
+}
+
+@media (max-width: 568px) {
+  .formContainer .userForm {
+    padding: 70px 0;
+  }
 }
 
 .formContainer .userForm ul li {
@@ -225,6 +249,27 @@ header .burgerlist li .user img {
 
 .formContainer .userForm ul li a:hover {
   text-decoration: underline;
+}
+
+.formContainer .registerForm {
+  padding: 40px 25px;
+}
+
+.formContainer .registerForm .logo {
+  margin: 0 auto;
+  width: 150px;
+}
+
+@media (max-width: 768px) {
+  .formContainer .registerForm {
+    padding: 150px 25px;
+  }
+}
+
+@media (max-width: 568px) {
+  .formContainer .registerForm {
+    padding: 50px 0;
+  }
 }
 
 #map {
