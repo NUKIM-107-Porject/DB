@@ -1,7 +1,7 @@
 <?php
-session_start();
-$UID = $_SESSION['UID'];
-echo $UID . "<br>";
+    session_start();
+    $UID = $_SESSION['UID'];
+    echo $UID . "<br>";
 ?>
 
 <!DOCTYPE html>
@@ -20,23 +20,19 @@ echo $UID . "<br>";
 
 <body>
     <?php
-    if (isset($_SESSION['UID'])) {
-        //echo $_SESSION['UID'];    
-        echo "<center>";
-        echo "<h1>";
-        echo "<a href='./personalInfo.php'>個人資料</a>";
-        echo "<br><a href='./personalCreditCard.php'>選擇/修改所使用的信用卡種</a>";
-        echo "<br><a href='./logout.php'>登出</a>";
-        echo "</h1>";
-        echo "</center>";
-    } else {
-        echo "<center>";
-        echo "<h1>";
-        echo "visiter";
-        echo "<br><a href='../login.html'>登入/註冊</a>";
-        echo "</h1>";
-        echo "</center>";
-    }
+        if (isset($_SESSION['UID'])) {
+            //echo $_SESSION['UID'];    
+            echo "<h1>";
+            echo "<a href='./personalInfo.php'>個人資料</a>";
+            echo "<br><a href='./personalCreditCard.php'>選擇/修改所使用的信用卡種</a>";
+            echo "<br><a href='./logout.php'>登出</a>";
+            echo "</h1>";
+        } else {
+            echo "<h1>";
+            echo "visiter";
+            echo "<br><a href='../login.html'>登入/註冊</a>";
+            echo "</h1>";
+        }
     ?>
 </body>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />

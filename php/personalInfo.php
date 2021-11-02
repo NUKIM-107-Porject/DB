@@ -1,7 +1,7 @@
 <?php
-session_start();
-$UID=$_SESSION['UID'];
-echo $UID;
+    session_start();
+    $UID=$_SESSION['UID'];
+    echo $UID;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,34 +20,37 @@ echo $UID;
 
 <body>
     <?php
-    echo "<table border='3'>";
-    if (isset($_SESSION['UID'])) {
-        include("./DBconnection.php");
-        $querycreditcardinfo = "SELECT * FROM `user` WHERE `user_UID` = $UID";
-        $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
-        $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
+        echo "<table border='3'>";
+        if (isset($_SESSION['UID'])) {
+            include("./DBconnection.php");
+            $querycreditcardinfo = "SELECT * FROM `user` WHERE `user_UID` = $UID";
+            $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
+            if($querycreditcardinfo_result){
+                $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
 
-        if ($resultcheck > 0) {
-            while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                echo "<tr>" . "<td>" . "使用者名稱" . "</td>";
-                echo "<td>" . $row['user_name'] . "</td>" . "</tr>";
-                echo "<tr>" . "<td>" . "使用者信箱" . "</td>";
-                echo "<td>" . $row['user_email'] . "</td>" . "</tr>";
-                echo "<tr>" . "<td>" . "使用者密碼" . "</td>";
-                echo "<td>" . $row['user_password'] . "</td>" . "</tr>";
+                if ($resultcheck > 0) {
+                    echo "success";
+                    while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
+                        echo "<tr>" . "<td>" . "使用者名稱" . "</td>";
+                        echo "<td>" . $row['user_name'] . "</td>" . "</tr>";
+                        echo "<tr>" . "<td>" . "使用者信箱" . "</td>";
+                        echo "<td>" . $row['user_email'] . "</td>" . "</tr>";
+                        echo "<tr>" . "<td>" . "使用者密碼" . "</td>";
+                        echo "<td>" . $row['user_password'] . "</td>" . "</tr>";
+                    }
+                }
             }
+            else{
+                echo "fail";
+            }
+            echo "<table>"."<tr>"."<td>"."<a href='./modifyPersonalInfo.php'>修改</a>"."</td>"."</table>";
+
+            mysqli_free_result($querycreditcardinfo_result);
+            $conn->close();
+            echo "</table>";
+        } else {
+            header("Refresh:0;url=./initial.php");
         }
-        echo "<table>"."<tr>"."<td>"."<a href='./modifyPersonalInfo.php'>修改</a>"."</td>"."</table>";
-
-        mysqli_free_result($querycreditcardinfo_result);
-        $conn->close();
-        echo "</table>";
-    } else {
-        header("Refresh:0;url=./initial.php");
-    }
     ?>
-
-
 </body>
-
 </html>
