@@ -41,6 +41,17 @@ header{
       color: #ffffff;
     }
   }
+  .searchBar{
+    position: absolute;
+    left: 10px;
+    top: 70px;
+    z-index: 999;
+    input{
+      border: none;
+      padding: 13px;
+      margin: 0;
+    }
+  }
   .burgerlist{
     display: none;
     &.active{

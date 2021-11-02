@@ -115,6 +115,19 @@ header .burger i {
   color: #ffffff;
 }
 
+header .searchBar {
+  position: absolute;
+  left: 10px;
+  top: 70px;
+  z-index: 999;
+}
+
+header .searchBar input {
+  border: none;
+  padding: 13px;
+  margin: 0;
+}
+
 header .burgerlist {
   display: none;
 }
