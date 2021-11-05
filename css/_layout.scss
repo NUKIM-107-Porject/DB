@@ -40,6 +40,9 @@ header{
     i{
       color: #ffffff;
     }
+    :hover{
+      text-decoration: none;
+    }
   }
   .searchBar{
     position: absolute;
@@ -65,7 +68,6 @@ header{
       transition: all 0.8s;
     }
     li{
-      // opacity: 50%;
       background: #ffffff;
       border-bottom: 5px solid $lightBlue;
       border-right: 5px solid $lightBlue;
@@ -75,6 +77,9 @@ header{
         padding: 10px 50px;
         color: $blue;       
         font-weight: bold;
+        span{
+          margin: 0 auto;
+        }
       }
       :hover{
         background: $lightBlue;
@@ -84,6 +89,7 @@ header{
         flex-direction: column;
         img{
           width: 50px;
+          margin: 0 auto;
         }
       }
     }

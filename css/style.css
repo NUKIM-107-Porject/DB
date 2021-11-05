@@ -115,6 +115,10 @@ header .burger i {
   color: #ffffff;
 }
 
+header .burger :hover {
+  text-decoration: none;
+}
+
 header .searchBar {
   position: absolute;
   left: 10px;
@@ -163,6 +167,10 @@ header .burgerlist li a {
   font-weight: bold;
 }
 
+header .burgerlist li a span {
+  margin: 0 auto;
+}
+
 header .burgerlist li :hover {
   background: #5d6c9b;
 }
@@ -179,6 +187,7 @@ header .burgerlist li .user {
 
 header .burgerlist li .user img {
   width: 50px;
+  margin: 0 auto;
 }
 
 * {
@@ -287,6 +296,23 @@ header .burgerlist li .user img {
   .formContainer .registerForm {
     padding: 50px 0;
   }
+}
+
+table {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+a {
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 #map {

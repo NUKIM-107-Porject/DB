@@ -1,0 +1,25 @@
+@mixin pad{
+  @media(max-width: 768px){
+	@content;
+  }
+}
+@mixin mobile{
+  @media(max-width: 568px){
+	@content;
+  }
+}
+table{
+  color:#fff;
+  font-size: 20px;
+  font-weight: bold;
+  // border: #fff solid 10px;
+}
+a{
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  &:hover{
+    text-decoration: none;
+  }
+}
