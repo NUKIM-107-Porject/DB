@@ -20,10 +20,10 @@
     <a href="#" class="burger">
       <i class="fas fa-bars"></i>
     </a>
-    <form class="searchBar">
+    <!-- <form class="searchBar">
       <input type="text" name="Search" placeholder="Search">
       <input type='button' name='submit' value='click'>
-    </form>
+    </form> -->
     <ul class="burgerlist">
       <li> 
         <a href="./login.html" class="user">
@@ -36,45 +36,35 @@
           <span>註冊</span>
         </a> 
       </li>
-      <li>
+      <!-- <li>
         <a href="#">
           <span>??</span>
         </a>
+      </li> -->
+    </ul>
+    <ul class="burgerlist">
+      <li> 
+        <a href="./personalInfo.php" class="user">
+          <img src="./img/user.png" alt="UserLogo">
+          <span>個人資料</span>
+        </a>
       </li>
+      <li> 
+        <a href="./personalCreditCard.php">
+          <span>信用卡設定</span>
+        </a> 
+      </li>
+      <li> 
+        <a href="./logout.php" >
+          <span>登出</span>
+        </a> 
+      </li>
+      
     </ul>
   </header>
   <div id="map"></div>  
 </body>
 
-<!-- <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
-<script>
-	var map = L.map('map').fitWorld();
-
-  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1
-  }).addTo(map);
-
-  function onLocationFound(e) {
-    var radius = e.accuracy / 2;
-    L.marker(e.latlng).addTo(map)
-      .bindPopup("You are within " + radius + " meters from this point").openPopup();
-    L.circle(e.latlng, radius).addTo(map);
-  }
-
-  function onLocationError(e) {
-    alert(e.message);
-  }
-
-  map.on('locationfound', onLocationFound);
-  map.on('locationerror', onLocationError);
-
-  map.locate({setView: true, maxZoom: 16});
-</script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places&callback=createMap" async defer></script>
 <!-- <script src="./js/map.js"async defer></script> -->
 <script>
@@ -96,16 +86,22 @@
   }
 
   function getCurrentLoc(){
-      infoWindow = new google.maps.InfoWindow({map: map});
+      // infoWindow = new google.maps.InfoWindow({map: map});
+      user = new google.maps.Marker({
+        map: map
+        // icon: ;
+      });
+      // var user = new google.maps.Marker
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
               pos = {
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
               };
-
-              infoWindow.setPosition(pos);
-              infoWindow.setContent('Location found.');
+              user.setPosition(pos);
+              // user.setContent('You are here!');
+              // infoWindow.setPosition(pos);
+              // infoWindow.setContent('You are here!');
               map.setCenter(pos);
               nearbysearch();
 
@@ -129,7 +125,7 @@
       var request = {
           location: map.getCenter(),
           radius: 1500,
-          types: ['cafe']
+          types: ['hospital']
       }
 
       var service = new google.maps.places.PlacesService(map);
