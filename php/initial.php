@@ -29,7 +29,7 @@
             echo "</h1>";
         } else {
             echo "<h1>";
-            echo "visiter";
+            echo "home";
             echo "<br><a href='../login.html'>登入/註冊</a>";
             echo "</h1>";
         }
