@@ -17,7 +17,7 @@
     if($row['user_password']!=null){
         if($row['user_password']==$Upassword){
             //echo $row['user_UID'];
-            //echo "<script>alert('login successfully')<script>";
+            //echo "<script>alert('login successfully')script>";
             $_SESSION['UID']=$row['user_UID'];
             header("Refresh:0;url=../home.php");    
         }
