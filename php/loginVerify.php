@@ -19,7 +19,7 @@
             //echo $row['user_UID'];
             //echo "<script>alert('login successfully')script>";
             $_SESSION['UID']=$row['user_UID'];
-            header("Refresh:0;url=../home.php");    
+            header("Refresh:0;url=./home.php");    
         }
         else{
             //echo "login fail!(Wrong Password)";

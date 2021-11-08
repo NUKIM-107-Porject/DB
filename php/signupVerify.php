@@ -4,7 +4,7 @@
   $Uemail = @$_POST['Uemail'];
   $Upassword = @$_POST['Upassword'];
   if($Uname==null || $Uemail==null || $Upassword==null){
-    header("Refresh:0;url=./signup.html");
+    header("Refresh:0;url=../signup.html");
   }
   else{
   include("./DBconnection.php");
@@ -17,7 +17,7 @@
       $row=mysqli_fetch_assoc($queryID_result);
       $_SESSION['UID'] = $row['user_UID'];
       //echo $_SESSION['UID'];
-      header("Refresh:0;url=./initial.php");
+      header("Refresh:0;url=./home.php");
     } 
 
     $conn->close();

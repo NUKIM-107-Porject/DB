@@ -21,7 +21,7 @@
 <body>
     <div class="InfoContainer">
         <div class="info">
-            <a href="../home.php">
+            <a href="./home.php">
                 <img class="logo" src="../img/LOGO.png" alt="MaPaY-Logo">
             </a>
             <ul>
@@ -36,21 +36,16 @@
                             if ($resultcheck > 0) {
                                 // echo "success";
                                 while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                                    echo "<li>Username</li>";
-                                    echo "<li>".$row['user_name']."</li>";
-                                    echo "<li>Email</li>";
-                                    echo "<li>".$row['user_email']."</li>";
-                                    echo "<li>Password</li>";
-                                    echo "<li>".$row['user_password']."</li>";
+                                    echo '<li>Username:<span>'.$row['user_name'].'</span></li>';
+                                    echo '<li>Email:<span>'.$row['user_email'].'</span></li>';
+                                    echo '<li>Password:<span>'.$row['user_password'].'</span></li>';
                                 }
                             }
                         }
                         else{
                             header("Refresh:0;url=./home.php");
                         }
-                        echo '<li>
-                        <a href="./modifyPersonalInfo.php" class="submit">修改資料</a>
-                        </li>';
+                        echo '<li><a href="./modifyPersonalInfo.php" class="edit">修改資料</a></li>';
 
                         mysqli_free_result($querycreditcardinfo_result);
                         $conn->close();
@@ -61,6 +56,10 @@
             </ul>
         </div>
     </div>
-    
 </body>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/burger.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="../js/all.js"></script>
 </html>

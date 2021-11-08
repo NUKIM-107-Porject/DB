@@ -18,36 +18,44 @@
 </head>
 
 <body>
-    <?php
-        echo "<table border='3'>";
-        if (isset($_SESSION['UID'])) {
-            echo "<tr>" . "<td>" . "銀行" . "</td>";
-            echo "<td>" . "卡種" . "</td>" . "</tr>";
-            
-            include("./DBconnection.php");
-            $querycreditcardinfo = "SELECT C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
-            $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
-            if($querycreditcardinfo_result){
-                echo "success";
-                $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
-                if ($resultcheck > 0) {
-                    while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                        echo "<tr>" ."<td>" . $row['creditcard_bank'] . "</td>" ;
-                        echo "<td>" . $row['creditcard_category'] . "</td>" . "</tr>";
+    <div class="creditContainer">
+        <ul>
+            <?php
+                if (isset($_SESSION['UID'])) {
+                    echo "<li>銀行<span>卡種</span></li>";
+                    // echo "<li>卡種</li>";
+                    
+                    include("./DBconnection.php");
+                    $querycreditcardinfo = "SELECT C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
+                    $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
+                    if($querycreditcardinfo_result){
+                        // echo "success";
+                        $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
+                        if ($resultcheck > 0) {
+                            while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
+                                echo "<li>".$row['creditcard_bank']."<span>".$row['creditcard_category']."</span></li>";
+                                // echo "<li>".$row['creditcard_category']."</li>";
+                            }
+                        }    
                     }
-                }    
-            }
-            else{
-                echo "fail";
-            }
-            
-            //mysqli_free_result($querycreditcardinfo_result);
-            $conn->close();
-            echo "<table>"."<tr>"."<td>"."<a href='./deletePersonalCreditCard.php'>刪除</a>"."</td>";
-            echo "<td>"."<a href='./addPersonalCreditCard.php'>新增</a>"."</td>"."</tr>"."</table>";
-        } else {
-            header("Refresh:0;url=./initial.php");
-        }
-    ?>
+                    else{
+                        echo "fail";
+                    }
+                    
+                    //mysqli_free_result($querycreditcardinfo_result);
+                    $conn->close();
+                    echo "<li><a href='./deletePersonalCreditCard.php'>刪除</a><a href='./addPersonalCreditCard.php'>新增</a></li>";
+                    // echo "<li><a href='./addPersonalCreditCard.php'>新增</a></li>";
+                } else {
+                    header("Refresh:0;url=./home.php");
+                }
+            ?>
+        </ul>
+    </div>
 </body>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/burger.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="../js/all.js"></script>
 </html>

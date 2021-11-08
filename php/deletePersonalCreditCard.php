@@ -44,7 +44,7 @@
             //mysqli_free_result($querycreditcardinfo_result);
             $conn->close();
         } else {
-            header("Refresh:0;url=./initial.php");
+            header("Refresh:0;url=./home.php");
         }
     ?>
 </body>

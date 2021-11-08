@@ -14,6 +14,6 @@
             echo "fell";
         }
     }else{
-        header("Refresh:0;url=./initial.php");
+        header("Refresh:0;url=./home.php");
     }
 ?>

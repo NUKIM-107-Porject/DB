@@ -10,6 +10,6 @@
     header("Refresh:0;url=./personalCreditCard.php");
   }
   else{
-    header("Refresh:0;url=./initial.php");
+    header("Refresh:0;url=./home.php");
   }
 ?>
