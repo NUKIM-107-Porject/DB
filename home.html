@@ -24,6 +24,39 @@
       <input type="text" name="Search" placeholder="Search">
       <input type='button' name='submit' value='click'>
     </form> -->
+    <form class="search">
+      <ul>
+        <li>
+          <!-- <i class="fas fa-coffee"></i> -->
+          <!-- <input type="button" value="咖啡廳" onclick="cafe();"/> -->
+          <input type="button" value="咖啡廳" id="cafe">
+        </li>
+        <li>
+          <input type="button" value="醫院" id="hospital">
+        </li>
+        <li>
+          <!-- <i class="fas fa-utensils"></i> -->
+          <input type="button" value="餐廳" id="restaurant">
+        </li>
+        <li>
+          <!-- <i class="fas fa-capsules"></i> -->
+          <input type="button" value="藥局" id="pharmacy">
+        </li>
+        <li>
+          <input type="button" value="便利商店" id="store">
+        </li>
+        <li>
+          <input type="button" value="超市" id="supermarket">
+        </li>
+        <li>
+          <!-- <i class="fas fa-parking"></i> -->
+          <input type="button" value="停車場" id="parking">
+        </li>
+        <li>
+          <input type="button" value="診所" id="doctor">
+        </li>
+      </ul> 
+    </form>
     <ul class="burgerlist">
       <li> 
         <a href="./login.html" class="user">
@@ -36,11 +69,6 @@
           <span>註冊</span>
         </a> 
       </li>
-      <!-- <li>
-        <a href="#">
-          <span>??</span>
-        </a>
-      </li> -->
     </ul>
     <ul class="burgerlist">
       <li> 
@@ -65,33 +93,36 @@
   <div id="map"></div>  
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places&callback=createMap" async defer></script>
-<!-- <script src="./js/map.js"async defer></script> -->
-<script>
+
+<!-- <script>
   var map;
   var infoWindow;
   var request;
   var pos;
-  const searchtxt=document.getElementByName('Search')[0].value;
+  var markers=[];
+  var marker;
 
   function createMap() {
       map = new google.maps.Map(document.getElementById('map'), {
-          center: {
-              lat: 22.687370,
-              lng: 120.301476
-          },
-          zoom: 14
+        center: {
+          lat: 22.687370,
+          lng: 120.301476
+        },
+        zoom: 16,
+        mapTypeControl: false,//地圖種類
+        fullscreenControl: false,//全螢幕
+        streetViewControl: false,//小人
       });
       getCurrentLoc();
+
   }
 
   function getCurrentLoc(){
       // infoWindow = new google.maps.InfoWindow({map: map});
       user = new google.maps.Marker({
-        map: map
-        // icon: ;
+        map: map,
+        icon:"./img/ufo.ico"
       });
-      // var user = new google.maps.Marker
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
               pos = {
@@ -103,7 +134,9 @@
               // infoWindow.setPosition(pos);
               // infoWindow.setContent('You are here!');
               map.setCenter(pos);
-              nearbysearch();
+              // nearbysearch();
+
+              // map.setCenter(pos);
 
           }, function() {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -121,39 +154,135 @@
                           'Error: Your browser doesn\'t support geolocation.');
   }
 
-  function nearbysearch(){
+  function cafe(){
+      deleteMarkers();
+
       var request = {
           location: map.getCenter(),
           radius: 1500,
-          types: ['hospital']
+          types: ["cafe"]
       }
 
       var service = new google.maps.places.PlacesService(map);
 
       service.nearbySearch(request, callback);
   }
-  
+
+  function hospital(){
+      deleteMarkers();
+
+      var request = {
+          location: map.getCenter(),
+          radius: 1500,
+          types: ["hospital"]
+      }
+
+      var service = new google.maps.places.PlacesService(map);
+
+      service.nearbySearch(request, callback);
+  }
+
+  function restaurant(){
+      deleteMarkers();
+
+      var request = {
+          location: map.getCenter(),
+          radius: 1500,
+          types: ["restaurant"]
+      }
+
+      var service = new google.maps.places.PlacesService(map);
+
+      service.nearbySearch(request, callback);
+  }
+
+  function convenience_store(){
+      deleteMarkers();
+
+      var request = {
+          location: map.getCenter(),
+          radius: 1500,
+          types: ["convenience_store"]
+      }
+
+      var service = new google.maps.places.PlacesService(map);
+
+      service.nearbySearch(request, callback);
+  }
+
+  function parking(){
+    deleteMarkers();
+    var request = {
+      location: map.getCenter(),
+      radius: 1500,
+      types: ["parking"]
+    }
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+  }
+
+  function doctor(){
+    deleteMarkers();
+    var request = {
+      location: map.getCenter(),
+      radius: 1500,
+      types: ["doctor"]
+    }
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+  }
+
+  function pharmacy(){
+    deleteMarkers();
+    var request = {
+      location: map.getCenter(),
+      radius: 1500,
+      types: ["pharmacy"]
+    }
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+  }
+
+  function supermarket(){
+    deleteMarkers();
+    var request = {
+      location: map.getCenter(),
+      radius: 1500,
+      types: ["supermarket"]
+    }
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+  }
+
   function callback(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
-          console.log(results.length);
           for (var i = 0; i < results.length; i++) {
-          createMarker(results[i]);
+              createMarker(results[i]);
           }
       }
   }
 
   function createMarker(place) {
-      var placeLoc = place.geometry.location;
-      var marker = new google.maps.Marker({
+      marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location,
           title: place.name
-      })
+      });
+      markers.push(marker);
   }
-</script>
+
+  function deleteMarkers() {
+      for(var i=0;i<markers.length;i++){
+          markers[i].setMap(null);
+      }
+  }
+</script> -->
+
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="./js/jquery-3.5.1.min.js"></script>
 <script src="./js/burger.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="./js/all.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places&callback=createMap" async defer></script>
+<script src="./js/map.js"></script>
 </html>

@@ -133,9 +133,14 @@ header .search i {
 header .search input {
   border: none;
   cursor: pointer;
-  background: none;
-  padding: 13px;
-  margin: 0;
+  border-radius: 30px;
+  background: #fff;
+  border: solid 3px #2d385a;
+  font-size: 20px;
+  color: #2d385a;
+  font-weight: bold;
+  padding: 3px 8px;
+  margin: 0 0 5px 0;
 }
 
 header .burgerlist {
