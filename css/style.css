@@ -143,6 +143,11 @@ header .search input {
   margin: 0 0 5px 0;
 }
 
+header .search .cafe.active, header .search .hospital.active, header .search .restaurant.active, header .search .pharmacy.active, header .search .store.active, header .search .supermarket.active, header .search .parking.active, header .search .doctor.active {
+  background: #5d6c9b;
+  color: #fff;
+}
+
 header .burgerlist {
   display: none;
 }

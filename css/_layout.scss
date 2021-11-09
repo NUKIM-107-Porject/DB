@@ -64,6 +64,12 @@ header{
       padding: 3px 8px;
       margin: 0 0 5px 0;
     }
+    .cafe, .hospital, .restaurant, .pharmacy, .store, .supermarket, .parking, .doctor{
+      &.active{
+        background: $lightBlue;
+        color: #fff;
+      }
+    }
   }
   .burgerlist{
     display: none;

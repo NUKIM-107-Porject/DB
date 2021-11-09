@@ -29,28 +29,28 @@
     <form class="search">
       <ul>
         <li>
-          <input type="button" value="咖啡廳" id="cafe">
+          <input type="button" value="咖啡廳" id="cafe" class="cafe">
         </li>
         <li>
-          <input type="button" value="醫院" id="hospital">
+          <input type="button" value="醫院" id="hospital" class="hospital">
         </li>
         <li>
-          <input type="button" value="餐廳" id="restaurant">
+          <input type="button" value="餐廳" id="restaurant" class="restaurant">
         </li>
         <li>
-          <input type="button" value="藥局" id="pharmacy">
+          <input type="button" value="藥局" id="pharmacy" class="pharmacy">
         </li>
         <li>
-          <input type="button" value="便利商店" id="store">
+          <input type="button" value="便利商店" id="store" class="store">
         </li>
         <li>
-          <input type="button" value="超市" id="supermarket">
+          <input type="button" value="超市" id="supermarket" class="supermarket">
         </li>
         <li>
-          <input type="button" value="停車場" id="parking">
+          <input type="button" value="停車場" id="parking" class="parking">
         </li>
         <li>
-          <input type="button" value="診所" id="doctor">
+          <input type="button" value="診所" id="doctor" class="doctor">
         </li>
       </ul> 
     </form>
