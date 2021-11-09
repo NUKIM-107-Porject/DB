@@ -97,7 +97,7 @@
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZlmoXeSz14KZ7Tpttw2egBE-BlRkQiOk&libraries=places&callback=createMap" async defer></script>
-<script src="./js/map.js"></script>
+<script src="../js/map.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="../js/jquery-3.5.1.min.js"></script>
 <script src="../js/burger.js"></script>
