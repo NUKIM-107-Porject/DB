@@ -18,35 +18,37 @@
 </head>
 
 <body>
-    <?php
-        echo "<table border='3'>";
-        if (isset($_SESSION['UID'])) {
-            echo "<tr>" . "<td>" . "銀行" . "</td>";
-            echo "<td>" . "卡種" . "</td>" . "</tr>";
-            include("./DBconnection.php");
-            $querycreditcardinfo = "SELECT C.creditcard_CID,C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
-            $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
-            if($querycreditcardinfo_result){
-                echo "seccess";
-                $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
-                if ($resultcheck > 0) {
-                    while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                        echo "<tr>" ."<td>" . $row['creditcard_bank'] . "</td>" ;
-                        $CID=$row['creditcard_CID'];
-                        echo "<td>" . $row['creditcard_category']."<form action='deletePersonalCreditCardDB.php' method='POST'>"."<input type='hidden' name='CID' value='$CID'>"  ."<input type='submit' name='submit' value='刪除'>"."</form>"."</td>" . "</tr>";
+<div class="creditContainer">
+        <ul>
+            <?php
+                if (isset($_SESSION['UID'])) {
+                    echo "<li>銀行<span>卡種</span></li>";
+                    // echo "<td>卡種</tr>";
+                    include("./DBconnection.php");
+                    $querycreditcardinfo = "SELECT C.creditcard_CID,C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
+                    $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
+                    if($querycreditcardinfo_result){
+                        // echo "seccess";
+                        $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
+                        if ($resultcheck > 0) {
+                            while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
+                                $CID=$row['creditcard_CID'];
+                                echo "<li><form action='deletePersonalCreditCardDB.php' method='POST'>".$row['creditcard_bank']."<span>".$row['creditcard_category']."</span><input type='hidden' name='CID' value='$CID'><input type='submit' name='submit' value='刪除'></form></li>";
+                            }
+                        }
                     }
-                }
-            }
-            else{
-                echo "fail";
-            }
+                    else{
+                        echo "fail";
+                    }
 
-            //mysqli_free_result($querycreditcardinfo_result);
-            $conn->close();
-        } else {
-            header("Refresh:0;url=./home.php");
-        }
-    ?>
+                    //mysqli_free_result($querycreditcardinfo_result);
+                    $conn->close();
+                } else {
+                    header("Refresh:0;url=./home.php");
+                }
+            ?>
+        </ul>
+    </div>
 </body>
 
 </html>
