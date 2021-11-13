@@ -32,7 +32,7 @@ function getCurrentLoc(){
   // infoWindow = new google.maps.InfoWindow({map: map});
   user = new google.maps.Marker({
     map: map,
-    icon:"./img/ufo.ico"
+    icon:"../img/Here.png",
   });
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
