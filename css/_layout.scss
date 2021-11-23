@@ -36,6 +36,7 @@ header{
     }
   }
   .burger{
+    cursor: pointer;
     padding: 5px 10px;
     i{
       color: #ffffff;
@@ -49,9 +50,6 @@ header{
     left: 10px;
     top: 70px;
     z-index: 999;
-    i{
-      font-size: 50px;
-    }
     input{
       border: none;
       cursor: pointer;
@@ -69,6 +67,19 @@ header{
         background: $lightBlue;
         color: #fff;
       }
+    }
+  }
+  .uLocate{
+    position: absolute;
+    cursor: pointer;
+    left: 10px;
+    top: 570px;
+    z-index: 999;
+    background: $red;
+    border-radius: 50px;
+    padding: 5px;
+    i{
+      color: #fff;
     }
   }
   .burgerlist{

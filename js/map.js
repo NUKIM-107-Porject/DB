@@ -13,6 +13,8 @@ document.getElementById("store").onclick = function() {convenience_store()};
 document.getElementById("supermarket").onclick = function() {supermarket()};
 document.getElementById("parking").onclick = function() {parking()};
 document.getElementById("doctor").onclick = function() {doctor()};
+document.getElementById("uLocate").onclick = function() {getCurrentLoc();};
+
 
 function createMap() {
   map = new google.maps.Map(document.getElementById('map'), {

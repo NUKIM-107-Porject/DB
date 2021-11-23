@@ -108,6 +108,7 @@ header a h1 {
 }
 
 header .burger {
+  cursor: pointer;
   padding: 5px 10px;
 }
 
@@ -126,10 +127,6 @@ header .search {
   z-index: 999;
 }
 
-header .search i {
-  font-size: 50px;
-}
-
 header .search input {
   border: none;
   cursor: pointer;
@@ -145,6 +142,21 @@ header .search input {
 
 header .search .cafe.active, header .search .hospital.active, header .search .restaurant.active, header .search .pharmacy.active, header .search .store.active, header .search .supermarket.active, header .search .parking.active, header .search .doctor.active {
   background: #5d6c9b;
+  color: #fff;
+}
+
+header .uLocate {
+  position: absolute;
+  cursor: pointer;
+  left: 10px;
+  top: 570px;
+  z-index: 999;
+  background: #df3314;
+  border-radius: 50px;
+  padding: 5px;
+}
+
+header .uLocate i {
   color: #fff;
 }
 
@@ -476,6 +488,14 @@ header .burgerlist li .user img {
   }
 }
 
+.creditContainer .logo {
+  margin: 0 auto;
+}
+
+.creditContainer .logo img {
+  width: 150px;
+}
+
 .creditContainer h1 {
   text-align: center;
   margin-bottom: 20px;
@@ -491,21 +511,34 @@ header .burgerlist li .user img {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   text-align: center;
+  padding: 5px auto;
 }
 
 .creditContainer ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  text-align: center;
   font-size: 18px;
+  font-weight: bold;
   width: 200px;
-  background: #74db83;
+  height: 80px;
+  background: #fff;
   color: #2d385a;
   line-height: 20px;
-  border-radius: 30px;
-  margin: 5px;
-  padding: 10px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.creditContainer ul li span {
+  margin: auto;
 }
 
 .creditContainer a {

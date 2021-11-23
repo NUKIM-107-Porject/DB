@@ -70,6 +70,11 @@
           </a> 
         </li>
         <li> 
+          <a href="./personalPayment.php">
+            <span>行動支付設定</span>
+          </a> 
+        </li>
+        <li> 
           <a href="./logout.php" >
             <span>登出</span>
           </a> 

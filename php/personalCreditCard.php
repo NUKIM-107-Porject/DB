@@ -19,6 +19,9 @@
 
 <body>
     <div class="creditContainer">
+    <a href="./home.php" class="logo">
+        <img  src="../img/LOGO.png" alt="MaPaY-Logo">
+    </a>
     <h1>My Credit Card</h1>
         <ul>
             <?php
@@ -32,7 +35,7 @@
                         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
                         if ($resultcheck > 0) {
                             while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                                echo "<li>".$row['creditcard_bank']."<br>".$row['creditcard_category']."</li>";
+                                echo "<li><span>".$row['creditcard_bank']."<br>".$row['creditcard_category']."</span></li>";
                                 // echo "<li>".$row['creditcard_category']."</li>";
                             }
                         }    

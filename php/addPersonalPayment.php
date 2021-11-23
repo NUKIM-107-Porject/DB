@@ -1,7 +1,7 @@
 <?php
     session_start();
-    //$UID = $_SESSION['UID'];
-    $UID=1;
+    $UID = $_SESSION['UID'];
+    // $UID=1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,14 +15,14 @@
   
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../img/LOGO.ico" type="image/x-icon"/>
-    <title>Personal Credit Add</title>
+    <title>Add Pay</title>
 </head>
 
 <body>
     <?php
         //if (isset($_SESSION['UID'])) {
             include("./DBconnection.php");
-            $querypaymentinfo = "SELECT P.payment_PID,P.payment_template FROM payment P WHERE P.payment_PID NOT IN (SELECT UPR.PID FROM user_payment_relation UPR WHERE UPR.UID=1)";
+            $querypaymentinfo = "SELECT P.payment_PID,P.payment_template FROM payment P WHERE P.payment_PID NOT IN (SELECT UPR.PID FROM user_payment_relation UPR WHERE UPR.UID='$UID')";
             $querypaymentinfo_result = mysqli_query($conn, $querypaymentinfo);
             $querypaymentinfo_resultcheck = mysqli_num_rows($querypaymentinfo_result);
             //echo "$querypaymentinfo_resultcheck";

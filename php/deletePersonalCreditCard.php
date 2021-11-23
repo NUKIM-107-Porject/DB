@@ -22,7 +22,7 @@
         <ul>
             <?php
                 if (isset($_SESSION['UID'])) {
-                    echo "<li>銀行<span>卡種</span></li>";
+                    // echo "<li>銀行<span>卡種</span></li>";
                     // echo "<td>卡種</tr>";
                     include("./DBconnection.php");
                     $querycreditcardinfo = "SELECT C.creditcard_CID,C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
