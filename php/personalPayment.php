@@ -19,24 +19,20 @@
 
 <body>
     <div class="creditContainer">
-    <h1>My Credit Card</h1>
         <ul>
             <?php
                 if (isset($_SESSION['UID'])) {
-                    
+                    echo "<li><span>行動支付</span></li>";
                     include("./DBconnection.php");
-                    $querycreditcardinfo = "SELECT C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
-                    $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
-                    if($querycreditcardinfo_result){
-                        // echo "success";
-                        $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
+                    $queryPersonalPaymentInfo = "SELECT P.payment_template FROM payment P WHERE P.payment_PID IN(SELECT UPR.PID FROM user_payment_relation UPR WHERE UPR.PID='$UID')";
+                    $queryPersonalPaymentInfo_result = mysqli_query($conn, $queryPersonalPaymentInfo);
+                    $resultcheck = mysqli_num_rows($queryPersonalPaymentInfo_result);
+                    if($queryPersonalPaymentInfo_result){
                         if ($resultcheck > 0) {
-                            while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                                echo "<li>".$row['creditcard_bank']."<br>".$row['creditcard_category']."</li>";
-                                // echo "<li>".$row['creditcard_category']."</li>";
+                            while ($row = mysqli_fetch_array($queryPersonalPaymentInfo_result)) {
+                                echo "<li>"."<span>".$row['payment_template']."</span></li>";
                             }
                         }    
-                        echo "</ul>";
                     }
                     else{
                         echo "fail";
@@ -44,13 +40,12 @@
                     
                     //mysqli_free_result($querycreditcardinfo_result);
                     $conn->close();
-                    echo "<a href='./deletePersonalCreditCard.php'>刪除</a><a href='./addPersonalCreditCard.php'>新增</a>";
-                    // echo "<li><a href='./addPersonalCreditCard.php'>新增</a></li>";
+                    echo "<li><a href='./deletePersonalPayment.php'>刪除</a><a href='./addPersonalPayment.php'>新增</a></li>";
                 } else {
                     header("Refresh:0;url=./home.php");
                 }
             ?>
-        
+        </ul>
     </div>
 </body>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />

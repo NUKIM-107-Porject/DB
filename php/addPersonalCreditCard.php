@@ -18,37 +18,38 @@
 </head>
 
 <body>
-    <?php
-        if (isset($_SESSION['UID'])) {
-            include("./DBconnection.php");
-            $querycreditcardinfo = "SELECT c.creditcard_CID,c.creditcard_bank,c.creditcard_category
-        FROM credit_card c
-        WHERE c.creditcard_CID NOT IN (SELECT U.CID FROM user_creditcard_relation U WHERE U.UID='$UID');";
-            $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
-            $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
-            echo "<h1 style='text-align:center'>Add A Credit Card";
-            if ($resultcheck > 0) {
-                echo "<form action='./addPersonalCreditCardDB.php' method='POST'>";
-                echo "<select name='creditcard'>";
-                //echo "<option selected disable>-- select --</option>";
-                while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                    $CID = $row['creditcard_CID'];
-                    $creditcardbank = $row['creditcard_bank'];
-                    $creditcardcategory = $row['creditcard_category'];
-                    echo "<option value='$CID'>$creditcardbank $creditcardcategory</option>";
+    <div class="creditContainer">
+        <?php
+            if (isset($_SESSION['UID'])) {
+                include("./DBconnection.php");
+                $querycreditcardinfo = "SELECT c.creditcard_CID,c.creditcard_bank,c.creditcard_category
+            FROM credit_card c
+            WHERE c.creditcard_CID NOT IN (SELECT U.CID FROM user_creditcard_relation U WHERE U.UID='$UID');";
+                $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
+                $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
+                echo "<h1>Add A Credit Card</h1>";
+                if ($resultcheck > 0) {
+                    echo "<form action='./addPersonalCreditCardDB.php' method='POST'>";
+                    echo "<select name='creditcard'>";
+                    //echo "<option selected disable>-- select --</option>";
+                    while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
+                        $CID = $row['creditcard_CID'];
+                        $creditcardbank = $row['creditcard_bank'];
+                        $creditcardcategory = $row['creditcard_category'];
+                        echo "<option value='$CID'>$creditcardbank $creditcardcategory</option>";
+                    }
+                    echo "</select>";
+                    echo "<input type='submit' value='Submit'>";
+                    echo "</form>";
+                    echo "</h1>";
                 }
-                echo "</select>";
-                echo "<input type='submit' value='Submit'>";
-                echo "</form>";
-                echo "</h1>";
+
+                //mysqli_free_result($querycreditcardinfo_result);
+                $conn->close();
+            } else {
+                header("Refresh:0;url=./home.php");
             }
-
-            //mysqli_free_result($querycreditcardinfo_result);
-            $conn->close();
-        } else {
-            header("Refresh:0;url=./home.php");
-        }
-    ?>
-
+        ?>
+    </div>
 </body>
 </html>

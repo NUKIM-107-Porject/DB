@@ -2,11 +2,35 @@
   color: #fff;
   font-weight: bold;
   font-size: 30px;
-  padding: 0 30%;
+  padding: 20px 10% 0 10%;
   @include pad(){
     padding: 0 10%;
   }
   @include mobile(){
     padding: 0;
+  }
+  h1{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    li{
+      font-size: 18px;
+      width: 200px;
+      background: rgb(116, 219, 131);
+      color: $blue;
+      line-height: 20px;
+      border-radius: 30px;
+      margin: 5px;
+      padding: 10px;
+    }
+  }
+  a{
+    color: #ffffff;
   }
 }
