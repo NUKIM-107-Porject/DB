@@ -16,13 +16,13 @@
 <body>
   <header>
     <div class="serarchContainer">
-      <a id="uLocate">
+      <a id="uLocate1">
         <img class="logo" src="../img/LOGO.png" alt="MaPaY-Logo">
         <h1>MaPaY</h1> 
       </a>
       <input id="pac-input" type="text" placeholder="Search"></input>
     </div>
-    <a id="uLocate" class="uLocate">
+    <a id="uLocate2" class="uLocate">
       <i class="fas fa-compass"></i>
     </a>
     <a class="burger">

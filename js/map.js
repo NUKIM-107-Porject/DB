@@ -19,7 +19,8 @@ document.getElementById("store").onclick = function() { convenience_store() };
 document.getElementById("supermarket").onclick = function() { supermarket() };
 document.getElementById("parking").onclick = function() { parking() };
 document.getElementById("doctor").onclick = function() { doctor() };
-document.getElementById("uLocate").onclick = function() { getCurrentLoc(); };
+document.getElementById("uLocate1").onclick = function() { getCurrentLoc(); };
+document.getElementById("uLocate2").onclick = function() { getCurrentLoc(); };
 
 
 function createMap() {
@@ -54,9 +55,10 @@ function createMap() {
       return;
     }
     // Clear out the old markers.
-    markers.forEach((marker) => {
-      marker.setMap(null);
-    });
+    deleteMarkers();
+    // markers.forEach((marker) => {
+    //   marker.setMap(null);
+    // });
     markers = [];
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
