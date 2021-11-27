@@ -15,21 +15,23 @@
 </head>
 <body>
   <header>
-    <a href="#">
-      <img class="logo" src="../img/LOGO.png" alt="MaPaY-Logo">
-      <h1>MaPaY</h1> 
-    </a>
+    <div class="serarchContainer">
+      <a id="uLocate">
+        <img class="logo" src="../img/LOGO.png" alt="MaPaY-Logo">
+        <h1>MaPaY</h1> 
+      </a>
+      <input id="pac-input" type="text" placeholder="Search"></input>
+    </div>
     <a id="uLocate" class="uLocate">
       <i class="fas fa-compass"></i>
     </a>
-    <a href="#" class="burger">
+    <a class="burger">
       <i class="fas fa-bars"></i>
     </a>
-    <!-- <form class="searchBar">
-      <input type="text" name="Search" placeholder="Search">
-      <input type='button' name='submit' value='click'>
-    </form> -->
     <form class="search">
+      <a id="prev">
+        <i class="fas fa-chevron-left"></i>
+      </a>
       <ul>
         <li>
           <input type="button" value="咖啡廳" id="cafe" class="cafe">
@@ -56,15 +58,31 @@
           <input type="button" value="診所" id="doctor" class="doctor">
         </li>
       </ul> 
+      <a id="next">
+        <i class="fas fa-chevron-right"></i>
+      </a>
     </form>
     <?php
     if(isset($_SESSION['UID'])){
+      $UID=$_SESSION['UID'];
+      include("./DBconnection.php");
+      $userName = "SELECT U.user_name FROM user U WHERE U.user_UID = '$UID'";
+      $userName_result = mysqli_query($conn, $userName);
+      $uName;
+      if ($userName_result) {
+        $resultcheck = mysqli_num_rows($userName_result);
+        if ($resultcheck > 0) {
+            while ($row = mysqli_fetch_array($userName_result)) {
+                $uName=$row['user_name'];          
+            }
+        }
+      }
       echo '
       <ul class="burgerlist">
         <li> 
           <a href="./personalInfo.php" class="user">
             <img src="../img/user.png" alt="UserLogo">
-            <span>個人資料</span>
+            <span>'.$uName.'<br>個人資料</span>
           </a>
         </li>
         <li> 
@@ -108,6 +126,7 @@
 <script src="../js/map.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/scroll.js"></script>
 <script src="../js/burger.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="../js/all.js"></script>

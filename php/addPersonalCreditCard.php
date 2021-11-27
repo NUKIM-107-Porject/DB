@@ -19,13 +19,18 @@
 
 <body>
     <div class="creditContainer">
+        <div class="logoContainer">
+            <a href="./home.php">
+                <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+            </a>
+        </div>
         <?php
             if (isset($_SESSION['UID'])) {
                 include("./DBconnection.php");
                 $queryCreditcardBank="SELECT B.BID,B.name FROM bank B";
                 $queryCreditcardBank_result = mysqli_query($conn, $queryCreditcardBank);
                 $queryCreditcardBank_resultcheck = mysqli_num_rows($queryCreditcardBank_result);
-                echo "<h1>Choose Credit Card Bank</h1>";
+                echo "<h1>請選擇銀行</h1>";
                 if ($queryCreditcardBank_resultcheck > 0) {
                     echo "<h1><select id='bankID' onchange='queryCreditcardInfo(this.value)'>
                     <option selected disable>-- select --</option>;
@@ -39,29 +44,12 @@
                 }
             }
                 // $conn->close();
-            } else {
+            else {
                 header("Refresh:0;url=./home.php");
             }
         ?>
         <h1 id="txtHint"></h1>
-        <script type="text/javascript">
-            function queryCreditcardInfo(bankName) {
-                //alert(bankName);
-                if (bankName == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-                } else {
-                    var xmlhttp = new XMLHttpRequest();
-                    xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("txtHint").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET","queryCreditcardInfoDB.php?q="+bankName,true);
-                xmlhttp.send();
-                }
-            }
-        </script>
+    <script src="../js/addCreditCard.js"></script>
     </div>
 </body>
 </html>

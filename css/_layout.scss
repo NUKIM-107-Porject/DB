@@ -21,24 +21,43 @@ header{
   padding: 5px;
   position: relative;
   background: $blue;
-  a{
+  .serarchContainer{
     display: flex;
-    flex-direction: row;
-    font-size: 40px;
-    font-weight: bold;
-    .logo{
-      display: block;
-      width: 60px;
+    a{
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      font-size: 40px;
+      font-weight: bold;
+      .logo{
+        display: block;
+        width: 60px;
+      }
+      h1{
+        margin: auto 10px;
+        color: #ffffff;
+        @include mobile(){
+          display: none;
+        }
+      }
     }
-    h1{
-      margin: auto 10px;
-      color: #ffffff;
+    input{
+      border: none;
+      border-radius: 30px;
+      padding: 0 15px;
+      margin: 8px;
+      width: 300px;
+      @include mobile(){
+        width: 150px;
+      }
+      
     }
   }
   .burger{
     cursor: pointer;
     padding: 5px 10px;
     i{
+      font-size: 40px;
       color: #ffffff;
     }
     :hover{
@@ -48,24 +67,46 @@ header{
   .search{
     position: absolute;
     left: 10px;
-    top: 90px;
+    top: 70px;
     z-index: 999;
-    input{
-      border: none;
-      cursor: pointer;
-      border-radius: 30px;
-      background: #fff;
-      border: solid 3px $blue;
-      font-size: 20px;
-      color: $blue;
-      font-weight: bold;
-      padding: 3px 8px;
-      margin: 0 0 5px 0;
+    display: flex;
+    a{
+      font-size: 40px;
+      display: none;
+      margin: 0;
+      i{
+        color: $blue;
+      }
+      @include mobile(){
+        display: block;
+      }
     }
-    .cafe, .hospital, .restaurant, .pharmacy, .store, .supermarket, .parking, .doctor{
-      &.active{
-        background: $lightBlue;
-        color: #fff;
+    ul{
+      display: flex;
+      flex-direction: row;
+      input{
+        cursor: pointer;
+        border-radius: 30px;
+        background: #fff;
+        border: solid 3px $blue;
+        font-size: 20px;
+        color: $blue;
+        font-weight: bold;
+        padding: 3px 8px;
+        margin: 0 5px ;
+      }
+      .cafe, .hospital, .restaurant, .pharmacy, .store, .supermarket, .parking, .doctor{
+        &.active{
+          background: $lightBlue;
+          color: #fff;
+        }
+      }
+      @include mobile(){
+        // display: inline;
+        width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+
       }
     }
   }
@@ -80,6 +121,14 @@ header{
     padding: 5px;
     i{
       color: #fff;
+      font-size: 40px;
+
+    }
+    @include pad(){
+      top: 950px;
+    }
+    @include mobile(){
+      top: 510px;
     }
   }
   .burgerlist{
@@ -104,8 +153,11 @@ header{
         padding: 10px 30px;
         color: $blue;       
         font-weight: bold;
+        display: flex;
+        text-align: center;
         span{
           margin: 0 auto;
+          text-align: center;
         }
       }
       :hover{
@@ -116,7 +168,7 @@ header{
         flex-direction: column;
         img{
           width: 50px;
-          margin: 0 auto;
+          margin: 5px auto;
         }
       }
     }

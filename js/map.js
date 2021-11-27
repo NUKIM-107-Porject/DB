@@ -37,38 +37,95 @@ function createMap() {
 
   geocoder = new google.maps.Geocoder();
 
-  const inputText = document.createElement("input");
-  inputText.type = "text";
-  inputText.placeholder = "Enter a location";
 
-  const submitButton = document.createElement("input");
-  submitButton.type = "button";
-  submitButton.value = "Search";
-  submitButton.classList.add("button", "button-primary");
-
-  const clearButton = document.createElement("input");
-  clearButton.type = "button";
-  clearButton.value = "Clear";
-  clearButton.classList.add("button", "button-secondary");
-  response = document.createElement("pre");
-  response.id = "response";
-  response.innerText = "";
-  responseDiv = document.createElement("div");
-  responseDiv.id = "response-container";
-  responseDiv.appendChild(response);
-
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);
-  marker = new google.maps.Marker({
-    map,
+//TEST
+  const input = document.getElementById("pac-input");
+  const searchBox = new google.maps.places.SearchBox(input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
   });
-  map.addListener("click", (e) => {
-    geocode({ location: e.latLng });
+  let markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
+    if (places.length == 0) {
+      return;
+    }
+    // Clear out the old markers.
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    markers = [];
+    // For each place, get the icon, name and location.
+    const bounds = new google.maps.LatLngBounds();
+
+    places.forEach((place) => {
+      if (!place.geometry || !place.geometry.location) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      const icon = {
+        url: "../img/blue.png",//place.icon,
+        // size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(20, 40),
+        scaledSize: new google.maps.Size(40, 40),
+      };
+      // Create a marker for each place.
+      markers.push(
+        new google.maps.Marker({
+          map,
+          icon,
+          title: place.name,
+          position: place.geometry.location,
+        })
+      );
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
   });
-  submitButton.addEventListener("click", () =>
-    geocode({ address: inputText.value })
-  );
+//TEST
+
+  // const inputText = document.createElement("input");
+  // inputText.type = "text";
+  // inputText.placeholder = "Enter a location";
+
+  // const submitButton = document.createElement("input");
+  // submitButton.type = "button";
+  // submitButton.value = "Search";
+  // submitButton.classList.add("button", "button-primary");
+
+  // const clearButton = document.createElement("input");
+  // clearButton.type = "button";
+  // clearButton.value = "Clear";
+  // clearButton.classList.add("button", "button-secondary");
+  // response = document.createElement("pre");
+  // response.id = "response";
+  // response.innerText = "";
+  // responseDiv = document.createElement("div");
+  // responseDiv.id = "response-container";
+  // responseDiv.appendChild(response);
+
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);
+  
+  // marker = new google.maps.Marker({
+  //   map,
+  // });
+  // map.addListener("click", (e) => {
+  //   geocode({ location: e.latLng });
+  // });
+  // submitButton.addEventListener("click", () =>
+  //   geocode({ address: inputText.value })
+  // );
   clearButton.addEventListener("click", () => {
     clear();
   });
@@ -238,7 +295,8 @@ function createMarker(place) {
   marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
-    title: place.name
+    title: place.name,
+    icon: {url:"../img/green.png", scaledSize: new google.maps.Size(40, 40)}, 
   });
   markers.push(marker);
   infowindow=new google.maps.InfoWindow({

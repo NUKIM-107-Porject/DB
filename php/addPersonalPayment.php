@@ -20,6 +20,11 @@
 
 <body>
     <div class="payContainer">
+        <div class="logoContainer">
+            <a href="./home.php">
+                <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+            </a>
+        </div>
         <?php
         if (isset($_SESSION['UID'])) {
             include("./DBconnection.php");

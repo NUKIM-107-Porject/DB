@@ -10,7 +10,9 @@
         if($addpersonalcreditcard_result){
             header("Refresh:0;url=./personalCreditCard.php");
         }else{
-            echo "fell";
+            // echo "fell";
+            header("Refresh:0;url=./addPersonalCreditCard.php");
+            echo "<script type='text/javascript'>alert('請選擇信用卡');</script>";
         }
     }else{
         header("Refresh:0;url=./home.php");
