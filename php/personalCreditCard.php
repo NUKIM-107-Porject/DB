@@ -14,28 +14,30 @@
   
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../img/LOGO.ico" type="image/x-icon"/>
-    <title>Personal Credit Info</title>
+    <title>Credit Card Info</title>
 </head>
 
 <body>
     <div class="creditContainer">
-    <a href="./home.php" class="logo">
-        <img  src="../img/LOGO.png" alt="MaPaY-Logo">
-    </a>
-    <h1>My Credit Card</h1>
+        <div class="logoContainer">
+            <a href="./home.php">
+                <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+            </a>
+        </div>
+        <h1>My Credit Card</h1>
         <ul>
             <?php
                 if (isset($_SESSION['UID'])) {
                     
                     include("./DBconnection.php");
-                    $querycreditcardinfo = "SELECT C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
+                    $querycreditcardinfo = "SELECT B.name,C.creditcard_category FROM credit_card C,user_creditcard_relation UCR,bank B WHERE UCR.UID='$UID' AND C.creditcard_CID=UCR.CID AND C.creditcard_bank=B.BID ORDER BY C.creditcard_bank";
                     $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
                     if($querycreditcardinfo_result){
                         // echo "success";
                         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
                         if ($resultcheck > 0) {
                             while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                                echo "<li><span>".$row['creditcard_bank']."<br>".$row['creditcard_category']."</span></li>";
+                                echo "<li><span>".$row['name']."<br>".$row['creditcard_category']."</span></li>";
                                 // echo "<li>".$row['creditcard_category']."</li>";
                             }
                         }    
@@ -44,16 +46,14 @@
                     else{
                         echo "fail";
                     }
-                    
                     //mysqli_free_result($querycreditcardinfo_result);
                     $conn->close();
-                    echo "<a href='./deletePersonalCreditCard.php'>刪除</a><a href='./addPersonalCreditCard.php'>新增</a>";
+                    echo '<div class="btns"><a href="./deletePersonalCreditCard.php">刪除</a><a href="./addPersonalCreditCard.php">新增</a></div>';
                     // echo "<li><a href='./addPersonalCreditCard.php'>新增</a></li>";
                 } else {
                     header("Refresh:0;url=./home.php");
                 }
             ?>
-        
     </div>
 </body>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />

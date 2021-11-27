@@ -18,21 +18,29 @@
 </head>
 
 <body>
-    <div class="creditContainer">
+    <div class="payContainer">
+        <div class="logoContainer">
+            <a href="./home.php">
+                <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+            </a>
+        </div>
+        <h1>My Mobile Pay</h1>
         <ul>
             <?php
                 if (isset($_SESSION['UID'])) {
-                    echo "<li><span>行動支付</span></li>";
+                    // echo "<li><span>行動支付</span></li>";
                     include("./DBconnection.php");
-                    $queryPersonalPaymentInfo = "SELECT P.payment_template FROM payment P WHERE P.payment_PID IN(SELECT UPR.PID FROM user_payment_relation UPR WHERE UPR.PID='$UID')";
+                    $queryPersonalPaymentInfo = "SELECT P.payment_template FROM payment P WHERE P.payment_PID IN(SELECT UPR.PID FROM user_payment_relation UPR WHERE UPR.UID='$UID')";
                     $queryPersonalPaymentInfo_result = mysqli_query($conn, $queryPersonalPaymentInfo);
-                    $resultcheck = mysqli_num_rows($queryPersonalPaymentInfo_result);
+                    
                     if($queryPersonalPaymentInfo_result){
+                        $resultcheck = mysqli_num_rows($queryPersonalPaymentInfo_result);
                         if ($resultcheck > 0) {
                             while ($row = mysqli_fetch_array($queryPersonalPaymentInfo_result)) {
-                                echo "<li>"."<span>".$row['payment_template']."</span></li>";
+                                echo "<li><span>".$row['payment_template']."</span></li>";
                             }
                         }    
+                        echo "</ul>";
                     }
                     else{
                         echo "fail";
@@ -40,12 +48,11 @@
                     
                     //mysqli_free_result($querycreditcardinfo_result);
                     $conn->close();
-                    echo "<li><a href='./deletePersonalPayment.php'>刪除</a><a href='./addPersonalPayment.php'>新增</a></li>";
+                    echo '<div class="btns"><a href="./deletePersonalPayment.php">刪除</a><a href="./addPersonalPayment.php">新增</a></div>';
                 } else {
                     header("Refresh:0;url=./home.php");
                 }
             ?>
-        </ul>
     </div>
 </body>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />

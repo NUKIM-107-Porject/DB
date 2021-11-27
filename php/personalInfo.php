@@ -21,9 +21,11 @@
 <body>
     <div class="InfoContainer">
         <div class="info">
-            <a href="./home.php">
-                <img class="logo" src="../img/LOGO.png" alt="MaPaY-Logo">
-            </a>
+            <div class="logoContainer">
+                <a href="./home.php">
+                    <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+                </a>
+            </div>
             <ul>
                 <?php
                     if (isset($_SESSION['UID'])) {
@@ -38,7 +40,11 @@
                                 while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
                                     echo '<li>Username:<span>'.$row['user_name'].'</span></li>';
                                     echo '<li>Email:<span>'.$row['user_email'].'</span></li>';
-                                    echo '<li>Password:<span>'.$row['user_password'].'</span></li>';
+                                    echo '<li>Password:<span>';
+                                    for($i=1;$i<=strlen($row['user_password']);$i++){
+                                        echo '*';
+                                    }
+                                    echo '</span></li>';
                                 }
                             }
                         }

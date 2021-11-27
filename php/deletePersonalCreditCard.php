@@ -18,24 +18,32 @@
 </head>
 
 <body>
-<div class="creditContainer">
+    <div class="creditContainer">
+        <div class="logoContainer">
+            <a href="./home.php">
+                <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+            </a>
+        </div>
+        <h1>Delete Credit Card</h1>
         <ul>
             <?php
                 if (isset($_SESSION['UID'])) {
                     // echo "<li>銀行<span>卡種</span></li>";
                     // echo "<td>卡種</tr>";
                     include("./DBconnection.php");
-                    $querycreditcardinfo = "SELECT C.creditcard_CID,C.creditcard_bank,C.creditcard_category FROM credit_card C,user_creditcard_relation U WHERE U.UID='$UID' AND C.creditcard_CID=U.CID ORDER BY C.creditcard_bank";
+                    $querycreditcardinfo = "SELECT C.creditcard_CID,B.name,C.creditcard_category FROM credit_card C,user_creditcard_relation UCR,bank B WHERE UCR.UID='$UID' AND C.creditcard_CID=UCR.CID AND B.BID=C.creditcard_bank ORDER BY C.creditcard_bank";
                     $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
                     if($querycreditcardinfo_result){
                         // echo "seccess";
                         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
+
                         if ($resultcheck > 0) {
                             while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
                                 $CID=$row['creditcard_CID'];
-                                echo "<li><form action='deletePersonalCreditCardDB.php' method='POST'>".$row['creditcard_bank']."<span>".$row['creditcard_category']."</span><input type='hidden' name='CID' value='$CID'><input type='submit' name='submit' value='刪除'></form></li>";
+                                echo "<li><span><form action='deletePersonalCreditCardDB.php' method='POST'>".$row['name']."<br>".$row['creditcard_category']."<input type='hidden' name='CID' value='$CID'><br><input type='submit' name='submit' value='刪除'></form></span></li>";
                             }
                         }
+                        echo "</ul>";
                     }
                     else{
                         echo "fail";
@@ -43,6 +51,7 @@
 
                     //mysqli_free_result($querycreditcardinfo_result);
                     $conn->close();
+                    echo '<div class="btns"><a href="./personalCreditCard.php">取消</a></div>';
                 } else {
                     header("Refresh:0;url=./home.php");
                 }

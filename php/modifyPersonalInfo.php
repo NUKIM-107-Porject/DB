@@ -21,9 +21,11 @@
 <body>
     <div class="InfoContainer">
         <div class="info">
-            <a href="./home.php">
-                <img class="logo" src="../img/LOGO.png" alt="MaPaY-Logo">
-            </a>
+        <div class="logoContainer">
+                <a href="./home.php">
+                    <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+                </a>
+            </div>
             <ul>
                 <?php
                     if (isset($_SESSION['UID'])) {
@@ -41,7 +43,7 @@
                                 echo '<li>Email<span class="cantEdit">'.$row['user_email'].'</span></li>';
                                 // echo '<li>Password</li>';
                                 $Upassword=$row['user_password'];
-                                echo "<li>Password<input type='text' name='Upassword' value='$Upassword'></li>";
+                                echo "<li>Password<input type='password' name='Upassword' value='$Upassword'></li>";
                             }
                         echo '<li class="btns"><input type="submit" name="submit" value="修改" class="modify"><a href="./personalInfo.php" class="cancel">取消</a></li>';
                         echo '</form>';

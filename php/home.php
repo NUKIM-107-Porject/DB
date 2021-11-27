@@ -19,6 +19,9 @@
       <img class="logo" src="../img/LOGO.png" alt="MaPaY-Logo">
       <h1>MaPaY</h1> 
     </a>
+    <a id="uLocate" class="uLocate">
+      <i class="fas fa-compass"></i>
+    </a>
     <a href="#" class="burger">
       <i class="fas fa-bars"></i>
     </a>

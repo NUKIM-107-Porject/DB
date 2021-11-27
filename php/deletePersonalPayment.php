@@ -18,11 +18,17 @@
 </head>
 
 <body>
-<div class="creditContainer">
+    <div class="payContainer">
+        <div class="logoContainer">
+            <a href="./home.php">
+                <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
+            </a>
+        </div>
+        <h1>Delete Mobile Pay</h1>
         <ul>
             <?php
                 if (isset($_SESSION['UID'])) {
-                    echo "<li><span>行動支付</span></li>";
+                    // echo "<li><span>行動支付</span></li>";
                     include("./DBconnection.php");
                     $queryPersonalPaymentInfo = "SELECT P.payment_PID,P.payment_template FROM payment P WHERE P.payment_PID IN(SELECT UPR.PID FROM user_payment_relation UPR WHERE UPR.UID='$UID')";
                     $queryPersonalPaymentInfo_result = mysqli_query($conn, $queryPersonalPaymentInfo);
@@ -31,20 +37,21 @@
                         if ($resultcheck > 0) {
                             while ($row = mysqli_fetch_array($queryPersonalPaymentInfo_result)) {
                                 $PID=$row['payment_PID'];
-                                echo "<li><form action='deletePersonalPaymentDB.php' method='POST'>".$row['payment_template']."</span><input type='hidden' name='PID' value='$PID'><input type='submit' name='submit' value='刪除'></form></li>";
+                                echo "<li><span><form action='deletePersonalPaymentDB.php' method='POST'>".$row['payment_template']."</span><input type='hidden' name='PID' value='$PID'><br><input type='submit' name='submit' value='刪除'></form></span></li>";
                             }
                         }
+                        echo "</ul>";
                     }
                     else{
                     }
 
                     //mysqli_free_result($querycreditcardinfo_result);
                     $conn->close();
+                    echo '<div class="btns"><a href="./personalPayment.php">取消</a></div>';
                 } else {
                     header("Refresh:0;url=./home.php");
                 }
             ?>
-        </ul>
     </div>
 </body>
 

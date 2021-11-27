@@ -19,14 +19,15 @@
 </head>
 
 <body>
-    <?php
-        //if (isset($_SESSION['UID'])) {
+    <div class="payContainer">
+        <?php
+        if (isset($_SESSION['UID'])) {
             include("./DBconnection.php");
             $querypaymentinfo = "SELECT P.payment_PID,P.payment_template FROM payment P WHERE P.payment_PID NOT IN (SELECT UPR.PID FROM user_payment_relation UPR WHERE UPR.UID='$UID')";
             $querypaymentinfo_result = mysqli_query($conn, $querypaymentinfo);
             $querypaymentinfo_resultcheck = mysqli_num_rows($querypaymentinfo_result);
             //echo "$querypaymentinfo_resultcheck";
-            echo "<h1 style='text-align:center'>Add A Payment";
+            echo "<h1>Add A Payment</h1>";
             if ($querypaymentinfo_resultcheck > 0) {
                 echo "<form action='./addPersonalPaymentDB.php' method='POST'>";
                 echo "<select name='payment'>";
@@ -40,15 +41,15 @@
                 echo "</select>";
                 echo "<input type='submit' value='Submit'>";
                 echo "</form>";
-                echo "</h1>";
+                // echo "";
             }
 
             //mysqli_free_result($querycreditcardinfo_result);
             $conn->close();
-        //} else {
-        //    header("Refresh:0;url=./home.php");
-        //}
-    ?>
-
+        } else {
+           header("Refresh:0;url=./home.php");
+        }
+        ?>
+    </div>
 </body>
 </html>

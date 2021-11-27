@@ -1,19 +1,25 @@
 var map;
 var infoWindow;
+var infowindow;
 var request;
 var pos;
-var markers=[];
+var markers = [];
 var marker;
 
-document.getElementById("cafe").onclick = function() {cafe()};
-document.getElementById("hospital").onclick = function() {hospital()};
-document.getElementById("restaurant").onclick = function() {restaurant()};
-document.getElementById("pharmacy").onclick = function() {pharmacy()};
-document.getElementById("store").onclick = function() {convenience_store()};
-document.getElementById("supermarket").onclick = function() {supermarket()};
-document.getElementById("parking").onclick = function() {parking()};
-document.getElementById("doctor").onclick = function() {doctor()};
-document.getElementById("uLocate").onclick = function() {getCurrentLoc();};
+var infoObj = [];
+var geocoder;
+var response;
+var responseDiv;
+
+document.getElementById("cafe").onclick = function() { cafe() };
+document.getElementById("hospital").onclick = function() { hospital() };
+document.getElementById("restaurant").onclick = function() { restaurant() };
+document.getElementById("pharmacy").onclick = function() { pharmacy() };
+document.getElementById("store").onclick = function() { convenience_store() };
+document.getElementById("supermarket").onclick = function() { supermarket() };
+document.getElementById("parking").onclick = function() { parking() };
+document.getElementById("doctor").onclick = function() { doctor() };
+document.getElementById("uLocate").onclick = function() { getCurrentLoc(); };
 
 
 function createMap() {
@@ -28,16 +34,55 @@ function createMap() {
     streetViewControl: false,//小人
   });
   getCurrentLoc();
+
+  geocoder = new google.maps.Geocoder();
+
+  const inputText = document.createElement("input");
+  inputText.type = "text";
+  inputText.placeholder = "Enter a location";
+
+  const submitButton = document.createElement("input");
+  submitButton.type = "button";
+  submitButton.value = "Search";
+  submitButton.classList.add("button", "button-primary");
+
+  const clearButton = document.createElement("input");
+  clearButton.type = "button";
+  clearButton.value = "Clear";
+  clearButton.classList.add("button", "button-secondary");
+  response = document.createElement("pre");
+  response.id = "response";
+  response.innerText = "";
+  responseDiv = document.createElement("div");
+  responseDiv.id = "response-container";
+  responseDiv.appendChild(response);
+
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);
+  marker = new google.maps.Marker({
+    map,
+  });
+  map.addListener("click", (e) => {
+    geocode({ location: e.latLng });
+  });
+  submitButton.addEventListener("click", () =>
+    geocode({ address: inputText.value })
+  );
+  clearButton.addEventListener("click", () => {
+    clear();
+  });
+  clear();
 }
 
-function getCurrentLoc(){
+function getCurrentLoc() {
   // infoWindow = new google.maps.InfoWindow({map: map});
   user = new google.maps.Marker({
     map: map,
-    icon:"../img/Here.ico",
+    icon: "../img/Here.ico",
   });
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
       pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -49,10 +94,10 @@ function getCurrentLoc(){
       map.setCenter(pos);
       // nearbysearch();
       // map.setCenter(pos);
-    }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-  } 
+    }, function () {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  }
   else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
@@ -66,7 +111,34 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     'Error: Your browser doesn\'t support geolocation.');
 }
 
-function cafe(){
+function geocode(request) {
+  clear();
+  geocoder
+    .geocode(request)
+    .then((result) => {
+      const { results } = result;
+
+      map.setCenter(results[0].geometry.location);
+      for (var i = 0; i < results.length; i++) {
+        marker.setPosition(results[i].geometry.location);
+      }
+
+      marker.setMap(map);
+      responseDiv.style.display = "block";
+      response.innerText = JSON.stringify(result, null, 2);
+      return results;
+    })
+    .catch((e) => {
+      alert("Geocode was not successful for the following reason: " + e);
+    });
+}
+
+function clear() {
+  marker.setMap(null);
+  responseDiv.style.display = "none";
+}
+
+function cafe() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -77,7 +149,7 @@ function cafe(){
   service.nearbySearch(request, callback);
 }
 
-function hospital(){
+function hospital() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -88,7 +160,7 @@ function hospital(){
   service.nearbySearch(request, callback);
 }
 
-function restaurant(){
+function restaurant() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -99,7 +171,7 @@ function restaurant(){
   service.nearbySearch(request, callback);
 }
 
-function convenience_store(){
+function convenience_store() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -110,7 +182,7 @@ function convenience_store(){
   service.nearbySearch(request, callback);
 }
 
-function parking(){
+function parking() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -121,7 +193,7 @@ function parking(){
   service.nearbySearch(request, callback);
 }
 
-function doctor(){
+function doctor() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -132,7 +204,7 @@ function doctor(){
   service.nearbySearch(request, callback);
 }
 
-function pharmacy(){
+function pharmacy() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -143,7 +215,7 @@ function pharmacy(){
   service.nearbySearch(request, callback);
 }
 
-function supermarket(){
+function supermarket() {
   deleteMarkers();
   var request = {
     location: map.getCenter(),
@@ -169,10 +241,37 @@ function createMarker(place) {
     title: place.name
   });
   markers.push(marker);
+  infowindow=new google.maps.InfoWindow({
+    content:"123\n123"
+  });
+  google.maps.event.addListener(marker,'click',createInfo(marker));
+}
+
+function createInfo(marker){
+  return function(){
+      infowindow.open(map,marker);
+  };
+}
+
+function closeOtherInfo() {
+  if (InforObj.length > 0) {
+      InforObj[0].set("marker", null);
+      InforObj[0].close();
+      InforObj.length = 0;
+  }
 }
 
 function deleteMarkers() {
-  for(var i=0;i<markers.length;i++){
+  for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
+}
+
+function setplaceinfo(place) {
+  var test = place.name;
+  google.maps.event.addListener(marker, 'click', (function (marker, infowindow) {
+    return function () {
+      infowindow.open(map, marker);
+    };
+  })(marker, infowindow));
 }

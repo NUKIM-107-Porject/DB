@@ -7,7 +7,6 @@
         include("./DBconnection.php");
         $addpersonalcreditcard = "INSERT INTO `user_creditcard_relation` ( `UID`, `CID`) VALUES ( '$UID', '$CID');";
         $addpersonalcreditcard_result = mysqli_query($conn, $addpersonalcreditcard);
-    
         if($addpersonalcreditcard_result){
             header("Refresh:0;url=./personalCreditCard.php");
         }else{

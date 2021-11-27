@@ -22,34 +22,46 @@
         <?php
             if (isset($_SESSION['UID'])) {
                 include("./DBconnection.php");
-                $querycreditcardinfo = "SELECT c.creditcard_CID,c.creditcard_bank,c.creditcard_category
-                FROM credit_card c
-                WHERE c.creditcard_CID NOT IN (SELECT U.CID FROM user_creditcard_relation U WHERE U.UID='$UID');";
-                    $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
-                    $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
-                    echo "<h1>Add Credit Card</h1>";
-                    if ($resultcheck > 0) {
-                        echo "<form action='./addPersonalCreditCardDB.php' method='POST'>";
-                        echo "<select name='creditcard'>";
-                        //echo "<option selected disable>-- select --</option>";
-                        while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                            $CID = $row['creditcard_CID'];
-                            $creditcardbank = $row['creditcard_bank'];
-                            $creditcardcategory = $row['creditcard_category'];
-                            echo "<option value='$CID'>$creditcardbank $creditcardcategory</option>";
-                        }
-                        echo "</select>";
-                        echo "<input type='submit' value='Submit'>";
-                        echo "</form>";
-                        // echo "</h1>";
+                $queryCreditcardBank="SELECT B.BID,B.name FROM bank B";
+                $queryCreditcardBank_result = mysqli_query($conn, $queryCreditcardBank);
+                $queryCreditcardBank_resultcheck = mysqli_num_rows($queryCreditcardBank_result);
+                echo "<h1>Choose Credit Card Bank</h1>";
+                if ($queryCreditcardBank_resultcheck > 0) {
+                    echo "<h1><select id='bankID' onchange='queryCreditcardInfo(this.value)'>
+                    <option selected disable>-- select --</option>;
+                    <option value='1'>test1</option>";
+                    while ($row = mysqli_fetch_array($queryCreditcardBank_result)) {
+                        $bank_ID=$row['BID'];
+                        $bank_name=$row['name'];
+                        echo "<option value='$bank_ID'>$bank_name</option>";
                     }
-
-                //mysqli_free_result($querycreditcardinfo_result);
-                $conn->close();
+                    echo "</select></h1>";
+                }
+            }
+                // $conn->close();
             } else {
                 header("Refresh:0;url=./home.php");
             }
         ?>
+        <h1 id="txtHint"></h1>
+        <script type="text/javascript">
+            function queryCreditcardInfo(bankName) {
+                //alert(bankName);
+                if (bankName == "") {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+                } else {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET","queryCreditcardInfoDB.php?q="+bankName,true);
+                xmlhttp.send();
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
