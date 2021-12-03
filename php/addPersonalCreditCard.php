@@ -24,32 +24,33 @@
                 <img  src="../img/LOGO.png" alt="MaPaY-Logo" class="logo">
             </a>
         </div>
-        <?php
-            if (isset($_SESSION['UID'])) {
-                include("./DBconnection.php");
-                $queryCreditcardBank="SELECT B.BID,B.name FROM bank B";
-                $queryCreditcardBank_result = mysqli_query($conn, $queryCreditcardBank);
-                $queryCreditcardBank_resultcheck = mysqli_num_rows($queryCreditcardBank_result);
-                echo "<h1>請選擇銀行</h1>";
-                if ($queryCreditcardBank_resultcheck > 0) {
-                    echo "<h1><select id='bankID' onchange='queryCreditcardInfo(this.value)'>
-                    <option selected disable>-- select --</option>;
-                    <option value='1'>test1</option>";
-                    while ($row = mysqli_fetch_array($queryCreditcardBank_result)) {
-                        $bank_ID=$row['BID'];
-                        $bank_name=$row['name'];
-                        echo "<option value='$bank_ID'>$bank_name</option>";
+            <?php
+                if (isset($_SESSION['UID'])) {
+                    include("./DBconnection.php");
+                    $queryCreditcardBank="SELECT B.BID,B.name FROM bank B";
+                    $queryCreditcardBank_result = mysqli_query($conn, $queryCreditcardBank);
+                    $queryCreditcardBank_resultcheck = mysqli_num_rows($queryCreditcardBank_result);
+                    echo "<h1>請選擇銀行</h1>";
+                    echo '<div class="bankSelect">';
+                    if ($queryCreditcardBank_resultcheck > 0) {
+                        echo "<select id='bankID' onchange='queryCreditcardInfo(this.value)'>
+                        <option selected disable>--SELECT--</option>;
+                        <option value='1'>test1</option>";
+                        while ($row = mysqli_fetch_array($queryCreditcardBank_result)) {
+                            $bank_ID=$row['BID'];
+                            $bank_name=$row['name'];
+                            echo "<option value='$bank_ID'>$bank_name</option>";
+                        }
+                        echo "</select></div>";
                     }
-                    echo "</select></h1>";
+                    $conn->close();
                 }
-            }
-                // $conn->close();
-            else {
-                header("Refresh:0;url=./home.php");
-            }
-        ?>
-        <h1 id="txtHint"></h1>
-    <script src="../js/addCreditCard.js"></script>
+                else {
+                    header("Refresh:0;url=./home.php");
+                }
+            ?>
+        <div class="cardSelect"id="txtHint"></div>
     </div>
+    <script src="../js/addCreditCard.js"></script>
 </body>
 </html>

@@ -55,6 +55,53 @@
       }
     }
   }
+  form{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    select{
+      background-color: #fff;
+      color: $blue;
+      padding: 7px;
+      width: 200px;
+      border-radius: 30px;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      outline: none;
+      text-align: center;
+      margin: 0 auto 20px auto;
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      option{
+        text-align: center;
+        font-weight: bold;
+        border: none;
+        outline: none;
+      }
+    }
+    input{
+      cursor: pointer;
+      width: 100px;
+      color: $blue;
+      font-weight: bold;
+      display: block;
+      margin: 0 auto 0px auto;
+      padding: 10px 25px;
+      border-radius: 30px;
+      background: $yellow;
+      font-size: 20px;
+      padding: 10px 0;
+      outline: none;
+      border: none;
+      &:hover{
+        background: $red;
+        color: #fff;
+      }
+    }
+  }
   .btns{
     display: flex;
     justify-content: center;

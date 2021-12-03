@@ -45,14 +45,51 @@ header{
       border: none;
       border-radius: 30px;
       padding: 0 15px;
-      margin: 8px;
+      margin: 5px;
       width: 300px;
+      &:focus{
+        outline: none;
+      }
       @include mobile(){
         width: 150px;
       }
       
     }
   }
+  // input[type="range"] {
+  //   // -webkit-appearance: none;
+  //   // height: 100px;
+  //   // width: 200px;
+  //   position: absolute;
+  //   top: 130px;
+  //   z-index: 999;
+  //   background: none; // 清除不必要的東西
+  //   outline: none; // 清除不必要的東西
+  //   border-radius: 0; // 清除不必要的東西
+  //   overflow: hidden; // 晚點會用到
+  //   cursor: pointer;
+  //   color: $red;
+  //   // &::-webkit-slider-runnable-track {
+  //   //   // background-color: #ddd;
+  //   // }
+  //   // // 是能調整拖曳鈕的朋友
+  //   // &::-webkit-slider-thumb {
+  //   //   // -webkit-appearance: none; // 一樣要消除
+  //   //   // width: 20px;
+  //   //   // height: 10px;
+  //   //   // border-radius: 20px;
+  //   //   // background-color: $red;
+  //   //   // border: 2px solid #999;
+  //   // }
+  // }
+  // .laBarOutput{
+  //   z-index: 999;
+  //   position: absolute;
+  //   top: 150px;
+  //   width: 20px;
+  //   display: block;
+  // }
+  
   .burger{
     cursor: pointer;
     padding: 5px 10px;
@@ -69,47 +106,57 @@ header{
     left: 10px;
     top: 70px;
     z-index: 999;
-    display: flex;
-    a{
-      font-size: 40px;
-      display: none;
-      margin: 0;
-      i{
-        color: $blue;
-      }
-      @include mobile(){
-        display: block;
-      }
-    }
-    ul{
+    div{
       display: flex;
-      flex-direction: row;
-      input{
-        cursor: pointer;
-        border-radius: 30px;
-        background: #fff;
-        border: solid 3px $blue;
-        font-size: 20px;
-        color: $blue;
-        font-weight: bold;
-        padding: 3px 8px;
-        margin: 0 5px ;
-      }
-      .cafe, .hospital, .restaurant, .pharmacy, .store, .supermarket, .parking, .doctor{
-        &.active{
-          background: $lightBlue;
-          color: #fff;
+      .fas{
+        font-size: 40px;
+        display: none;
+        margin: 0;
+        i{
+          color: $blue;
+        }
+        @include mobile(){
+          display: block;
         }
       }
-      @include mobile(){
-        // display: inline;
-        width: 250px;
-        white-space: nowrap;
-        overflow: hidden;
-
+      ul{
+        display: flex;
+        flex-direction: row;
+        input{
+          cursor: pointer;
+          border-radius: 30px;
+          background: #fff;
+          border: solid 3px $blue;
+          font-size: 18px;
+          color: $blue;
+          height: 40px;
+          font-weight: bold;
+          padding: 3px 8px;
+          margin: 0 5px 5px 5px;
+          
+        }
+        
+        .store1, .store2, .store3, .store4, .store5, .store6, .store7, .store8, .store9, .store10, .store11, .pay1, .pay2, .pay3, .pay4, .pay5, .pay6, .pay7, .pay8, .pay9, .pay10, .pay11, .pay12{
+          &:hover{
+            background: $lightBlue;
+            color: #fff;
+          }
+          &.active{
+            background: $lightBlue;
+            color: #fff;
+          }
+        }
+        
+        
+        @include mobile(){
+          width: 250px;
+          white-space: nowrap;
+          overflow: hidden;
+        }
       }
     }
   }
+  
   .uLocate{
     position: absolute;
     cursor: pointer;

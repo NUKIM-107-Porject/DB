@@ -36,7 +36,7 @@
             if ($querypaymentinfo_resultcheck > 0) {
                 echo "<form action='./addPersonalPaymentDB.php' method='POST'>";
                 echo "<select name='payment'>";
-                echo "<option selected disable>-- select --</option>";
+                echo "<option selected disable>--SELECT--</option>";
                 while ($row = mysqli_fetch_array($querypaymentinfo_result)) {
                     $PID = $row['payment_PID'];
                     $Payment = $row['payment_template'];
@@ -44,7 +44,7 @@
                     echo "<option value='$PID'>$Payment</option>";
                 }
                 echo "</select>";
-                echo "<input type='submit' value='Submit'>";
+                echo "<input type='submit' value='新增'>";
                 echo "</form>";
                 // echo "";
             }

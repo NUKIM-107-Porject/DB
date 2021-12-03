@@ -30,15 +30,14 @@
                 if (isset($_SESSION['UID'])) {
                     
                     include("./DBconnection.php");
-                    $querycreditcardinfo = "SELECT B.name,C.creditcard_category FROM credit_card C,user_creditcard_relation UCR,bank B WHERE UCR.UID='$UID' AND C.creditcard_CID=UCR.CID AND C.creditcard_bank=B.BID ORDER BY C.creditcard_bank";
+                    $querycreditcardinfo = "SELECT C.creditcard_CID,B.name,C.creditcard_category,C.creditcard_Domestic,C.creditcard_MobilePayment FROM credit_card C,user_creditcard_relation UCR,bank B WHERE UCR.UID='$UID' AND C.creditcard_CID=UCR.CID AND C.creditcard_bank=B.BID ORDER BY C.creditcard_bank";
                     $querycreditcardinfo_result = mysqli_query($conn, $querycreditcardinfo);
                     if($querycreditcardinfo_result){
                         // echo "success";
                         $resultcheck = mysqli_num_rows($querycreditcardinfo_result);
                         if ($resultcheck > 0) {
                             while ($row = mysqli_fetch_array($querycreditcardinfo_result)) {
-                                echo "<li><span>".$row['name']."<br>".$row['creditcard_category']."</span></li>";
-                                // echo "<li>".$row['creditcard_category']."</li>";
+                                echo '<li class="creditCard creditCard'.$row['creditcard_CID'].'" id="test"><span>'.$row['name'].'<br>'.$row['creditcard_category'].'</span><div class="feedback feedback'.$row['creditcard_CID'].'"><span>國內消費現金回饋: '.$row['creditcard_Domestic'].'<br>行動支付回饋:'.$row['creditcard_MobilePayment'].'</span></div></li>';
                             }
                         }    
                         echo "</ul>";
@@ -61,4 +60,5 @@
 <script src="../js/burger.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="../js/all.js"></script>
+<script src="../js/scroll.js"></script>
 </html>

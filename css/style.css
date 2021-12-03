@@ -124,8 +124,12 @@ header .serarchContainer input {
   border: none;
   border-radius: 30px;
   padding: 0 15px;
-  margin: 8px;
+  margin: 5px;
   width: 300px;
+}
+
+header .serarchContainer input:focus {
+  outline: none;
 }
 
 @media (max-width: 568px) {
@@ -153,28 +157,31 @@ header .search {
   left: 10px;
   top: 70px;
   z-index: 999;
+}
+
+header .search div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-header .search a {
+header .search div .fas {
   font-size: 40px;
   display: none;
   margin: 0;
 }
 
-header .search a i {
+header .search div .fas i {
   color: #2d385a;
 }
 
 @media (max-width: 568px) {
-  header .search a {
+  header .search div .fas {
     display: block;
   }
 }
 
-header .search ul {
+header .search div ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -184,25 +191,31 @@ header .search ul {
           flex-direction: row;
 }
 
-header .search ul input {
+header .search div ul input {
   cursor: pointer;
   border-radius: 30px;
   background: #fff;
   border: solid 3px #2d385a;
-  font-size: 20px;
+  font-size: 18px;
   color: #2d385a;
+  height: 40px;
   font-weight: bold;
   padding: 3px 8px;
-  margin: 0 5px;
+  margin: 0 5px 5px 5px;
 }
 
-header .search ul .cafe.active, header .search ul .hospital.active, header .search ul .restaurant.active, header .search ul .pharmacy.active, header .search ul .store.active, header .search ul .supermarket.active, header .search ul .parking.active, header .search ul .doctor.active {
+header .search div ul .store1:hover, header .search div ul .store2:hover, header .search div ul .store3:hover, header .search div ul .store4:hover, header .search div ul .store5:hover, header .search div ul .store6:hover, header .search div ul .store7:hover, header .search div ul .store8:hover, header .search div ul .store9:hover, header .search div ul .store10:hover, header .search div ul .store11:hover, header .search div ul .pay1:hover, header .search div ul .pay2:hover, header .search div ul .pay3:hover, header .search div ul .pay4:hover, header .search div ul .pay5:hover, header .search div ul .pay6:hover, header .search div ul .pay7:hover, header .search div ul .pay8:hover, header .search div ul .pay9:hover, header .search div ul .pay10:hover, header .search div ul .pay11:hover, header .search div ul .pay12:hover {
+  background: #5d6c9b;
+  color: #fff;
+}
+
+header .search div ul .store1.active, header .search div ul .store2.active, header .search div ul .store3.active, header .search div ul .store4.active, header .search div ul .store5.active, header .search div ul .store6.active, header .search div ul .store7.active, header .search div ul .store8.active, header .search div ul .store9.active, header .search div ul .store10.active, header .search div ul .store11.active, header .search div ul .pay1.active, header .search div ul .pay2.active, header .search div ul .pay3.active, header .search div ul .pay4.active, header .search div ul .pay5.active, header .search div ul .pay6.active, header .search div ul .pay7.active, header .search div ul .pay8.active, header .search div ul .pay9.active, header .search div ul .pay10.active, header .search div ul .pay11.active, header .search div ul .pay12.active {
   background: #5d6c9b;
   color: #fff;
 }
 
 @media (max-width: 568px) {
-  header .search ul {
+  header .search div ul {
     width: 250px;
     white-space: nowrap;
     overflow: hidden;
@@ -344,7 +357,7 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
 
 @media (max-width: 568px) {
   .formContainer .userForm {
-    padding: 70px 0;
+    padding: 40px 0;
   }
 }
 
@@ -368,6 +381,12 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
 .formContainer .userForm ul li input:focus {
   outline: none;
   background: rgba(247, 247, 247, 0.884);
+}
+
+@media (max-width: 568px) {
+  .formContainer .userForm ul li input {
+    padding: 15px 15px;
+  }
 }
 
 .formContainer .userForm ul li .submit {
@@ -615,6 +634,7 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
 }
 
 .creditContainer ul li {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -647,6 +667,165 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
   font-weight: bold;
   padding: 2px 8px;
   border-radius: 10px;
+}
+
+.creditContainer ul .creditCard {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  width: 200px;
+  height: 100px;
+  background: #fff;
+  color: #2d385a;
+  line-height: 20px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.creditContainer ul .creditCard span {
+  margin: auto;
+}
+
+.creditContainer ul .creditCard span input {
+  margin-top: 5px;
+  background: #ffc400;
+  cursor: pointer;
+  border: none;
+  color: #2d385a;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.creditContainer ul .creditCard .feedback {
+  display: none;
+}
+
+.creditContainer ul .creditCard .feedback span {
+  margin: auto;
+}
+
+.creditContainer ul .creditCard .feedback.active {
+  position: absolute;
+  left: -10px;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  width: 200px;
+  height: 100px;
+  background: #ffc400;
+  color: #2d385a;
+  line-height: 20px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.creditContainer ul:hover {
+  text-decoration: underline;
+}
+
+.creditContainer .bankSelect {
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.creditContainer .bankSelect select {
+  text-align: center;
+  background-color: #fff;
+  color: #2d385a;
+  padding: 7px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+}
+
+.creditContainer .bankSelect select::-webkit-scrollbar {
+  width: 10px;
+}
+
+.creditContainer .bankSelect select option {
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+.creditContainer .cardSelect form {
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.creditContainer .cardSelect form select {
+  background-color: #fff;
+  color: #2d385a;
+  padding: 7px;
+  width: 300px;
+  border-radius: 30px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  text-align: center;
+  margin: 0 auto 20px auto;
+}
+
+.creditContainer .cardSelect form select::-webkit-scrollbar {
+  width: 10px;
+}
+
+.creditContainer .cardSelect form select option {
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+.creditContainer .cardSelect form input {
+  cursor: pointer;
+  width: 100px;
+  color: #2d385a;
+  font-weight: bold;
+  display: block;
+  margin: 0 auto 0px auto;
+  padding: 10px 25px;
+  border-radius: 30px;
+  background: #ffc400;
+  font-size: 20px;
+  padding: 10px 0;
+  outline: none;
+  border: none;
+}
+
+.creditContainer .cardSelect form input:hover {
+  background: #df3314;
+  color: #fff;
 }
 
 .creditContainer .btns {
@@ -762,6 +941,66 @@ img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost
   font-weight: bold;
   padding: 2px 8px;
   border-radius: 10px;
+}
+
+.payContainer form {
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.payContainer form select {
+  background-color: #fff;
+  color: #2d385a;
+  padding: 7px;
+  width: 200px;
+  border-radius: 30px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  text-align: center;
+  margin: 0 auto 20px auto;
+}
+
+.payContainer form select::-webkit-scrollbar {
+  width: 10px;
+}
+
+.payContainer form select option {
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+.payContainer form input {
+  cursor: pointer;
+  width: 100px;
+  color: #2d385a;
+  font-weight: bold;
+  display: block;
+  margin: 0 auto 0px auto;
+  padding: 10px 25px;
+  border-radius: 30px;
+  background: #ffc400;
+  font-size: 20px;
+  padding: 10px 0;
+  outline: none;
+  border: none;
+}
+
+.payContainer form input:hover {
+  background: #df3314;
+  color: #fff;
 }
 
 .payContainer .btns {

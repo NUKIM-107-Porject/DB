@@ -31,7 +31,7 @@
       padding: 150px 25px;
     }
     @include mobile(){
-      padding: 70px 0;
+      padding: 40px 0;
     }
     ul{
       li{
@@ -49,6 +49,9 @@
           &:focus{
             outline: none;
             background: rgba(247, 247, 247, 0.884);        
+          }
+          @include mobile(){
+            padding: 15px 15px;
           }
         }
         .submit{
